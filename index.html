@@ -73,6 +73,14 @@
             width: 2.5rem;
             height: 2.5rem;
         }
+
+        /* 新增卡片悬停效果 */
+        .card {
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body>
@@ -163,35 +171,37 @@
 
     <!-- 新闻公告 -->
     <div class="container mt-4">
-        <h2 class="mb-4">新闻公告占位测试</h2>
+        <h2 class="mb-4">新闻公告</h2>
         <div class="row">
-            <!-- 新闻卡片 -->
+            <!-- 新闻卡片1 -->
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">新闻标题1</h5>
-                        <p class="card-text">新闻内容简介...</p>
-                        <button class="btn btn-custom-red">查看更多</button>
+                        <h5 class="card-title">实验鹊华</h5>
+                        <p class="card-text">山东省实验中学鹊华校区介绍...</p>
+                        <a href="news/introductionofquehuacampus.html" class="btn btn-custom-red">查看更多</a>
                     </div>
                 </div>
             </div>
             
+            <!-- 新闻卡片2 -->
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">新闻标题2</h5>
-                        <p class="card-text">新闻内容简介...</p>
-                        <button class="btn btn-custom-red">查看更多</button>
+                        <h5 class="card-title">科技节活动预告</h5>
+                        <p class="card-text">年度科技创新大赛即将拉开帷幕...</p>
+                        <a href="news-2.html" class="btn btn-custom-red">查看更多</a>
                     </div>
                 </div>
             </div>
 
+            <!-- 新闻卡片3 -->
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">新闻标题3</h5>
-                        <p class="card-text">新闻内容简介...</p>
-                        <button class="btn btn-custom-red">查看更多</button>
+                        <h5 class="card-title">优秀学生表彰大会</h5>
+                        <p class="card-text">表彰本学期表现优异的学生...</p>
+                        <a href="news-3.html" class="btn btn-custom-red">查看更多</a>
                     </div>
                 </div>
             </div>
@@ -214,4 +224,4 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>
+                </html>
