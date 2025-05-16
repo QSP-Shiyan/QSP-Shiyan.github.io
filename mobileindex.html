@@ -1,0 +1,243 @@
+//移动端
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>鹊华学生合作组织</title>
+    <script>
+       // 桌面端自动跳转
+        (function(){
+            const desktopUA = !/Android|webOS|iPhone|iPad|iPod|BlackBerry/i;
+            if(desktopUA.test(navigator.userAgent)) window.location.href = 'index.html';
+        })();
+    </script>
+    <style>
+        :root{--c:#a3111b;--l:#fff9}
+        *{margin:0;box-sizing:border-box}
+        body{font-family:-apple-system,sans-serif;line-height:1.6;padding-top:60px}
+        
+        /* 导航优化 */
+        .nav{
+            background:var(--c);
+            padding:.8rem;
+            position:fixed;
+            width:100%;
+            top:0;
+            z-index:9;
+            display:flex;
+            justify-content:space-between;
+            align-items:center
+        }
+        .logo{height:40px}
+        .nav-links{display:flex;gap:1rem}
+        .nav-link{color:var(--l);text-decoration:none;padding:.4rem}
+        .menu-btn{display:none;background:0;border:0;color:var(--l);font-size:1.5rem}
+        
+        /* 轮播 */
+        .carousel{
+            margin:1rem auto;
+            max-width:1200px;
+            overflow:hidden
+        }
+        .carousel-inner{display:flex;transition:.5s}
+        .carousel-item{min-width:100%}
+        .carousel-item img{width:100%;height:50vh;object-fit:cover}
+        
+        /* 卡片链接 */
+        .news-section{
+            max-width:1200px;
+            margin:2rem auto;
+            padding:0 1rem
+        }
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:1.5rem
+        }
+        .card{
+            background:#fff;
+            border-radius:8px;
+            overflow:hidden;
+            box-shadow:0 2px 6px #0001;
+            transition:.2s;
+            display:block;
+            text-decoration:none;
+            color:inherit
+        }
+        .card:hover{
+            transform:translateY(-3px);
+            box-shadow:0 4px 12px #0002
+        }
+        .card img{width:100%;height:180px;object-fit:cover}
+        
+        /* 新版页脚 */
+        footer{
+            background:var(--c);
+            color:var(--l);
+            padding:2rem 1rem;
+            margin-top:3rem
+        }
+        .footer-container{
+            max-width:1200px;
+            margin:0 auto;
+            display:flex;
+            justify-content:space-between;
+            gap:2rem
+        }
+        .footer-section{
+            width:48%;
+            font-size:.9em;
+            line-height:1.4;
+            position:relative
+        }
+        .footer-section:first-child::after{
+            content:"";
+            position:absolute;
+            right:-1rem;
+            top:0;
+            height:100%;
+            width:1px;
+            background:#fff3
+        }
+        .footer-links{
+            display:flex;
+            flex-direction:column;
+            gap:.5rem
+        }
+        .footer-links a{
+            color:var(--l);
+            text-decoration:none;
+            width:max-content
+        }
+        
+        /* 响应式菜单 */
+        @media (max-width:768px){
+            .nav-links{
+                position:fixed;
+                top:60px;
+                right:1rem;
+                width:200px;
+                background:var(--c);
+                flex-direction:column;
+                max-height:0;
+                overflow:hidden;
+                transition:max-height .3s ease, opacity .2s;
+                opacity:0;
+                border-radius:4px;
+                box-shadow:0 4px 12px rgba(0,0,0,0.2)
+            }
+            .nav-links.active{
+                max-height:320px;
+                opacity:1;
+                padding:.5rem
+            }
+            .nav-link{
+                padding:.8rem;
+                line-height:1.3
+            }
+            .menu-btn{display:block}
+            .carousel-item img{height:40vh}
+            
+            /* 移动端页脚 */
+            .footer-container{
+                flex-direction:column;
+                gap:1.5rem
+            }
+            .footer-section{
+                width:100%;
+                padding-left:1rem
+            }
+            .footer-section:first-child::after{
+                left:0;
+                right:auto;
+                height:1px;
+                width:100%;
+                top:auto;
+                bottom:-1rem
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="#"><img src="logo.png" alt="校徽" class="logo"></a>
+        <div class="nav-links" id="navLinks">
+            <a href="#" class="nav-link">首页</a>
+            <a href="#" class="nav-link">实验中学</a>
+            <a href="#" class="nav-link">鹊华校区</a>
+            <a href="#" class="nav-link">关于我们</a>
+        </div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    </nav>
+
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item"><img src="banner1.jpg" alt="鹊华"></div>
+            <div class="carousel-item"><img src="banner2.jpg" alt="鹊华"></div>
+        </div>
+    </div>
+
+    <section class="news">
+        <h2>校园新闻</h2>
+        <div class="grid">
+            <a href="detail.html" class="card">
+                <img src="news1.jpg" alt="鹊华">
+                <div style="padding:1rem">
+                    <h3>鹊华</h3>
+                    <p>这里写字...</p>
+                </div>
+            </a>
+            <!-- 更多卡片 -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                  <h3>联系我们</h3>
+                <p>总部：2024级36、37班</p>
+                <p>官Q：3583268240</p>
+                <p>邮箱：3583268240@qq.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <div class="footer-links">
+                    <a href="http://sdshiyan.jinan-edu.cn" class="footer-link">省实验官网</a>
+                    <a href="#" class="footer-link">鹊华校区地图</a>
+                    <a href="#" class="footer-link">英语漫游社</a>
+                    <a href="https://user.qzone.qq.com/2949225767" class="footer-link">实验表白墙</a>
+                    <a href="#" class="footer-link"></a>
+                    <a href="#" class="footer-link"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 菜单切换
+        const toggleMenu=()=>{
+            const nav=document.getElementById('navLinks');
+            nav.classList.toggle('active');
+            document.querySelector('.menu-btn').textContent=nav.classList.contains('active')?'×':'☰';
+        }
+
+        // 点击外部关闭菜单
+        document.addEventListener('click',(e)=>{
+            const nav=document.getElementById('navLinks');
+            if(!e.target.closest('.nav') && nav.classList.contains('active')){
+                nav.classList.remove('active');
+                document.querySelector('.menu-btn').textContent='☰';
+            }
+        });
+
+        // 轮播控制
+        let currentSlide=0;
+        const slides=document.querySelectorAll('.carousel-item').length;
+        setInterval(()=>{
+            currentSlide=(currentSlide+1)%slides;
+            document.querySelector('.carousel-inner').style.transform=`translateX(-${currentSlide*100}%)`;
+        },5000);
+    </script>
+</body>
+                  </html>
