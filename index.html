@@ -1,184 +1,185 @@
+//桌面端
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>鹊华学生合作组织</title>
-    <script>
-        // 移动端自动跳转
-        (function(){
-            const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i;
-            if(mobileUA.test(navigator.userAgent)) window.location.href = '#';//记得加上
-        })();
-    </script>
-    <style>
-        :root{
-            --c:#a3111b;
-            --l:rgba(255,255,255,0.9);
-            --d:#8c0f17
-        }
-        *{margin:0;box-sizing:border-box}
-        body{font-family:-apple-system,sans-serif;line-height:1.6;min-width:1200px}
+    <meta charset="UTF-8">
+    <title>鹊华学生合作组织</title>
+    <script>
+        // 移动端自动跳转
+        (function(){
+            const mobileUA = !/Android|webOS|iPhone|iPad|iPod|BlackBerry/i;
+            if(mobileUA.test(navigator.userAgent)) window.location.href = 'mobileindex.html';
+        })();
+    </script>
+    <style>
+        :root{
+            --c:#a3111b;
+            --l:rgba(255,255,255,0.9);
+            --d:#8c0f17
+        }
+        *{margin:0;box-sizing:border-box}
+        body{font-family:-apple-system,sans-serif;line-height:1.6;min-width:1200px}
 
-        /* 导航栏 */
-        .nav{
-            background:var(--c);
-            padding:1rem 5%;
-            position:fixed;
-            width:100%;
-            top:0;
-            display:flex;
-            align-items:center;
-            box-shadow:0 4px 12px #0003
-        }
-        .logo{height:50px}
-        .nav-links{display:flex;gap:2rem;margin-left:3rem}
-        .nav-link{
-            color:var(--l);
-            text-decoration:none;
-            padding:0.8rem 1.2rem;
-            border-radius:6px;
-            transition:0.2s
-        }
-        .nav-link:hover{background:var(--d)}
+        /* 导航栏 */
+        .nav{
+            background:var(--c);
+            padding:1rem 5%;
+            position:fixed;
+            width:100%;
+            top:0;
+            display:flex;
+            align-items:center;
+            box-shadow:0 4px 12px #0003
+        }
+        .logo{height:50px}
+        .nav-links{display:flex;gap:2rem;margin-left:3rem}
+        .nav-link{
+            color:var(--l);
+            text-decoration:none;
+            padding:0.8rem 1.2rem;
+            border-radius:6px;
+            transition:0.2s
+        }
+        .nav-link:hover{background:var(--d)}
 
-        /* 轮播图 */
-        .carousel{
-            margin-top:80px;
-            height:600px;
-            overflow:hidden
-        }
-        .carousel-inner{display:flex;height:100%;transition:0.8s}
-        .carousel-item{min-width:100%}
-        .carousel-item img{width:100%;height:100%;object-fit:cover}
+        /* 轮播图 */
+        .carousel{
+            margin-top:80px;
+            height:600px;
+            overflow:hidden
+        }
+        .carousel-inner{display:flex;height:100%;transition:0.8s}
+        .carousel-item{min-width:100%}
+        .carousel-item img{width:100%;height:100%;object-fit:cover}
 
-        /* 内容区 */
-        .main{
-            max-width:1400px;
-            margin:4rem auto;
-            padding:0 2rem
-        }
-        .card-grid{
-            display:grid;
-            grid-template-columns:repeat(3,1fr);
-            gap:2.5rem;
-            margin-top:3rem
-        }
-        .card{
-            background:#fff;
-            border-radius:12px;
-            overflow:hidden;
-            box-shadow:0 6px 20px #0001;
-            transition:0.3s;
-            text-decoration:none;
-            color:#333
-        }
-        .card:hover{transform:translateY(-8px)}
-        .card img{width:100%;height:240px;object-fit:cover}
-        .card-content{padding:1.5rem}
+        /* 内容区 */
+        .main{
+            max-width:1400px;
+            margin:4rem auto;
+            padding:0 2rem
+        }
+        .card-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:2.5rem;
+            margin-top:3rem
+        }
+        .card{
+            background:#fff;
+            border-radius:12px;
+            overflow:hidden;
+            box-shadow:0 6px 20px #0001;
+            transition:0.3s;
+            text-decoration:none;
+            color:#333
+        }
+        .card:hover{transform:translateY(-8px)}
+        .card img{width:100%;height:240px;object-fit:cover}
+        .card-content{padding:1.5rem}
 
-        /* 页脚 */
-        .footer{
-            background:var(--c);
-            color:var(--l);
-            padding:4rem 5%;
-            margin-top:6rem
-        }
-        .footer-container{
-            max-width:1400px;
-            margin:0 auto;
-            display:flex;
-            justify-content:space-between
-        }
-        .footer-section{width:45%}
-        .footer-links{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
-        .footer-link{
-            color:var(--l);
-            text-decoration:none;
-            padding:0.5rem;
-            transition:0.2s
-        }
-        .footer-link:hover{opacity:0.8}
-    </style>
+        /* 页脚 */
+        .footer{
+            background:var(--c);
+            color:var(--l);
+            padding:4rem 5%;
+            margin-top:6rem
+        }
+        .footer-container{
+            max-width:1400px;
+            margin:0 auto;
+            display:flex;
+            justify-content:space-between
+        }
+        .footer-section{width:45%}
+        .footer-links{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+        .footer-link{
+            color:var(--l);
+            text-decoration:none;
+            padding:0.5rem;
+            transition:0.2s
+        }
+        .footer-link:hover{opacity:0.8}
+    </style>
 </head>
 <body>
-    <nav class="nav">
-        <a href="#"><img src="logo.png" alt="校徽" class="logo"></a>
-        <div class="nav-links">
-            <a href="#" class="nav-link">首页</a>
-            <a href="#" class="nav-link">实验中学</a>
-            <a href="#" class="nav-link">鹊华校区</a>
-            <a href="#" class="nav-link">关于我们</a>
-        </div>
-    </nav>
+    <nav class="nav">
+        <a href="#"><img src="logo.png" alt="校徽" class="logo"></a>
+        <div class="nav-links">
+            <a href="#" class="nav-link">首页</a>
+            <a href="#" class="nav-link">实验中学</a>
+            <a href="#" class="nav-link">鹊华校区</a>
+            <a href="#" class="nav-link">关于我们</a>
+        </div>
+    </nav>
 
-    <div class="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item">
-                <img src="banner1.jpg" alt="鹊华">
-            </div>
-            <div class="carousel-item">
-                <img src="banner2.jpg" alt="鹊华">
-            </div>
-        </div>
-    </div>
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="banner1.jpg" alt="鹊华">
+            </div>
+            <div class="carousel-item">
+                <img src="banner2.jpg" alt="鹊华">
+            </div>
+        </div>
+    </div>
 
-    <main class="news">
-        <h1>校园新闻</h1>
-        <div class="card-grid">
-            <a href="detail.html" class="card">
-                <img src="news1.jpg" alt="鹊华">
-                <div class="card-content">
-                    <h3>鹊华</h3>
-                    <p>这里写字...</p>
-                </div>
-            </a>
-            <a href="detail.html" class="card">
-                <img src="news2.jpg" alt="鹊华">
-                <div class="card-content">
-                    <h3>鹊华</h3>
-                    <p>写字...</p>
-                </div>
-            </a>
-            <a href="detail.html" class="card">
-                <img src="news3.jpg" alt="鹊华">
-                <div class="card-content">
-                    <h3>鹊华</h3>
-                    <p>写字...</p>
-                </div>
-            </a>
-        </div>
-    </main>
+    <main class="news">
+        <h1>校园新闻</h1>
+        <div class="card-grid">
+            <a href="detail.html" class="card">
+                <img src="news1.jpg" alt="鹊华">
+                <div class="card-content">
+                    <h3>鹊华</h3>
+                    <p>这里写字...</p>
+                </div>
+            </a>
+            <a href="detail.html" class="card">
+                <img src="news2.jpg" alt="鹊华">
+                <div class="card-content">
+                    <h3>鹊华</h3>
+                    <p>写字...</p>
+                </div>
+            </a>
+            <a href="detail.html" class="card">
+                <img src="news3.jpg" alt="鹊华">
+                <div class="card-content">
+                    <h3>鹊华</h3>
+                    <p>写字...</p>
+                </div>
+            </a>
+        </div>
+    </main>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>联系我们</h3>
-                <p>总部：2024级36、37班</p>
-                <p>官Q：3583268240</p>
-                <p>邮箱：3583268240@qq.com</p>
-            </div>
-            <div class="footer-section">
-                <h3>快速链接</h3>
-                <div class="footer-links">
-                    <a href="http://sdshiyan.jinan-edu.cn" class="footer-link">省实验官网</a>
-                    <a href="#" class="footer-link">鹊华校区地图</a>
-                    <a href="#" class="footer-link">英语漫游社</a>
-                    <a href="https://user.qzone.qq.com/2949225767" class="footer-link">实验表白墙</a>
-                    <a href="#" class="footer-link"></a>
-                    <a href="#" class="footer-link"></a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>总部：2024级36、37班</p>
+                <p>官Q：3583268240</p>
+                <p>邮箱：3583268240@qq.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <div class="footer-links">
+                    <a href="http://sdshiyan.jinan-edu.cn" class="footer-link">省实验官网</a>
+                    <a href="#" class="footer-link">鹊华校区地图</a>
+                    <a href="#" class="footer-link">英语漫游社</a>
+                    <a href="https://user.qzone.qq.com/2949225767" class="footer-link">实验表白墙</a>
+                    <a href="#" class="footer-link"></a>
+                    <a href="#" class="footer-link"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <script>
-        // 轮播控制
-        let currentSlide = 0;
-        const carousel = document.querySelector('.carousel-inner');
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % 2;
-            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-        }, 6000);
-    </script>
+    <script>
+        // 轮播控制
+        let currentSlide = 0;
+        const carousel = document.querySelector('.carousel-inner');
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % 2;
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }, 6000);
+    </script>
 </body>
-    </html>
+</html>
