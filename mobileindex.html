@@ -15,6 +15,7 @@
         *{margin:0;box-sizing:border-box;font-family:system-ui,sans-serif}
         body{padding-top:60px;color:#333}
 
+        /* 导航栏 */
         .nav{
             background:var(--c);padding:.8rem;
             position:fixed;top:0;width:100%;z-index:1000;
@@ -25,23 +26,27 @@
         .nav-link{color:var(--l);text-decoration:none;padding:.4rem}
         .menu-btn{display:none;background:0;border:0;color:var(--l);font-size:1.8rem}
 
-        .carousel{margin:1rem auto;max-width:1200px;height:50vh;overflow:hidden}
-        .carousel-inner{display:flex;width:300%;height:100%;transition:.5s}
-        .carousel-item{flex:0 0 33.333%;height:100%}
+        /* 移动端轮播图 */
+        .carousel{margin:1rem auto;height:40vh;overflow:hidden}
+        .carousel-inner{display:flex;height:100%;transition:.5s}
+        .carousel-item{flex:0 0 100%;height:100%}
         .carousel-item img{width:100%;height:100%;object-fit:cover}
 
-        .news{margin:2rem auto;padding:0 1rem;max-width:1200px}
+        /* 内容区 */
+        .news{margin:2rem auto;padding:0 1rem}
         .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
         .card{background:#fff;border-radius:8px;box-shadow:0 2px 6px #0001;transition:.2s}
         .card:hover{transform:translateY(-3px);box-shadow:0 4px 12px #0002}
         .card img{width:100%;height:180px;object-fit:cover;border-bottom:2px solid var(--c)}
 
+        /* 页脚 */
         footer{background:var(--c);color:var(--l);margin-top:3rem;padding:2rem 1rem}
-        .footer-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:2rem}
-        .footer-section{flex:1}
+        .footer-container{max-width:1200px;margin:0 auto}
+        .footer-section{font-size:0.85em;text-align:center}
         .footer-links{display:flex;flex-direction:column;gap:.5rem;padding:0}
         .footer-links a{color:var(--l);text-decoration:none}
 
+        /* 响应式菜单 */
         @media (max-width:768px){
             .menu-btn{display:block}
             .nav-links{
@@ -50,9 +55,6 @@
                 transition:.3s;border-radius:12px;box-shadow:0 4px 12px #0003
             }
             .nav-links.active{max-height:320px;padding:.5rem}
-            .carousel{height:40vh}
-            .carousel-item{flex:0 0 100%}
-            .footer-container{flex-direction:column}
         }
     </style>
 </head>
@@ -112,6 +114,7 @@
     </footer>
 
     <script>
+        // 移动端菜单逻辑
         const nav=document.getElementById('navLinks'),btn=document.querySelector('.menu-btn');
         const toggleMenu=()=>{
             nav.classList.toggle('active');
@@ -119,6 +122,7 @@
         }
         document.addEventListener('click',e=>!e.target.closest('.nav')&&nav.classList.contains('active')&&toggleMenu());
         
+        // 移动端轮播逻辑
         let slide=0,carousel=document.querySelector('.carousel-inner');
         setInterval(()=>{
             slide=(slide+1)%3;
