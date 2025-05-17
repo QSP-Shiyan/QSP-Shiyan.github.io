@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>鹊华学生合作组织</title>
     <script>
-        // 桌面端自动跳转
         (function(){
             const isDesktop = !/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
             if(isDesktop) window.location.href = 'index.html';
@@ -13,64 +12,47 @@
     </script>
     <style>
         :root{--c:#a3111b;--l:#fff9}
-        *{margin:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
-        body{padding-top:60px;line-height:1.6;color:#333}
+        *{margin:0;box-sizing:border-box;font-family:system-ui,sans-serif}
+        body{padding-top:60px;color:#333}
 
-        /* 导航栏 */
         .nav{
             background:var(--c);padding:.8rem;
-            position:fixed;top:0;width:100%;
+            position:fixed;top:0;width:100%;z-index:1000;
             display:flex;justify-content:space-between;align-items:center
         }
         .logo{height:40px}
         .nav-links{display:flex;gap:1rem;list-style:none}
         .nav-link{color:var(--l);text-decoration:none;padding:.4rem}
+        .menu-btn{display:none;background:0;border:0;color:var(--l);font-size:1.8rem}
 
-        /* 菜单按钮样式修改 */
-        .menu-btn{
-            display:none;background:transparent;border:none;
-            color:var(--l);font-size:1.8rem;padding:0 .5rem
-        }
+        .carousel{margin:1rem auto;max-width:1200px;height:50vh;overflow:hidden}
+        .carousel-inner{display:flex;width:300%;height:100%;transition:.5s}
+        .carousel-item{flex:0 0 33.333%;height:100%}
+        .carousel-item img{width:100%;height:100%;object-fit:cover}
 
-        /* 轮播图 */
-        .carousel{margin:1rem auto;max-width:1200px;overflow:hidden}
-        .carousel-inner{display:flex;transition:.5s;width:200%}
-        .carousel-item{flex:1}
-        .carousel-item img{width:100%;height:50vh;object-fit:cover}
-
-        /* 内容区 */
         .news{margin:2rem auto;padding:0 1rem;max-width:1200px}
         .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-        .card{background:#fff;border-radius:8px;box-shadow:0 2px 6px #0001;overflow:hidden;transition:.2s}
+        .card{background:#fff;border-radius:8px;box-shadow:0 2px 6px #0001;transition:.2s}
         .card:hover{transform:translateY(-3px);box-shadow:0 4px 12px #0002}
         .card img{width:100%;height:180px;object-fit:cover;border-bottom:2px solid var(--c)}
-        .card div{padding:1rem}
 
-        /* 页脚样式修改 */
         footer{background:var(--c);color:var(--l);margin-top:3rem;padding:2rem 1rem}
-        .footer-container{
-            max-width:1200px;margin:0 auto;
-            display:flex;justify-content:space-between;gap:2rem
-        }
-        .footer-section{flex:1;font-size:.9em}
-        .footer-section:first-child{max-width:300px}
+        .footer-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:2rem}
+        .footer-section{flex:1}
         .footer-links{display:flex;flex-direction:column;gap:.5rem;padding:0}
         .footer-links a{color:var(--l);text-decoration:none}
 
-        /* 响应式菜单 */
         @media (max-width:768px){
             .menu-btn{display:block}
             .nav-links{
-                position:fixed;top:60px;right:1rem;
-                background:var(--c);flex-direction:column;
-                width:200px;max-height:0;overflow:hidden;
-                transition:.3s;border-radius:12px;
-                box-shadow:0 4px 12px #0003
+                position:fixed;top:60px;right:1rem;background:var(--c);
+                flex-direction:column;width:200px;max-height:0;overflow:hidden;
+                transition:.3s;border-radius:12px;box-shadow:0 4px 12px #0003
             }
             .nav-links.active{max-height:320px;padding:.5rem}
-            .carousel-item img{height:40vh}
+            .carousel{height:40vh}
+            .carousel-item{flex:0 0 100%}
             .footer-container{flex-direction:column}
-            .footer-section{width:100%}
         }
     </style>
 </head>
@@ -130,7 +112,6 @@
     </footer>
 
     <script>
-        // 优化后的脚本
         const nav=document.getElementById('navLinks'),btn=document.querySelector('.menu-btn');
         const toggleMenu=()=>{
             nav.classList.toggle('active');
@@ -138,12 +119,11 @@
         }
         document.addEventListener('click',e=>!e.target.closest('.nav')&&nav.classList.contains('active')&&toggleMenu());
         
-        // 轮播控制
         let slide=0,carousel=document.querySelector('.carousel-inner');
         setInterval(()=>{
-            slide=(slide+1)%2;
+            slide=(slide+1)%3;
             carousel.style.transform=`translateX(-${slide*100}%)`;
         },5000);
     </script>
 </body>
-  </html>
+</html>
