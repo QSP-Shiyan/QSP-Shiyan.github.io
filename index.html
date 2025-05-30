@@ -2,153 +2,263 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>鹊华学生合作组织</title>
-    <script>
-        // 移动端自动跳转
-        (function(){
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
-            if(isMobile) window.location.href = 'mobileindex.html';
-        })();
-    </script>
     <style>
-        :root{
-            --c:#a3111b;
-            --l:rgba(255,255,255,0.9);
-            --d:#8c0f17
-        }
+        :root{--c:#a3111b;--l:rgba(255,255,255,0.9)}
         *{margin:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
-        body{line-height:1.6;color:#333;min-width:1200px;padding-top:80px}
-
-        /* 修复导航栏 */
+        body{line-height:1.6;color:#333;padding-top:60px}
+        
+        /* 导航栏 */
         .nav{
-            background:var(--c);
-            padding:1rem 5%;
-            position:fixed;
-            top:0;
-            width:100%;
-            display:flex;
-            align-items:center;
-            box-shadow:0 4px 12px #0003
+            background:var(--c);padding:.8rem;
+            position:fixed;top:0;width:100%;
+            display:flex;justify-content:space-between;align-items:center;z-index:1000
         }
-        .logo{
-            height:50px;
-            display:block /* 添加显示属性 */
+        .logo{height:40px;display:block}
+        .nav-links{display:flex;gap:1rem;list-style:none}
+        .nav-link{color:var(--l);text-decoration:none;padding:.4rem}
+        .menu-btn{
+            display:none;background:transparent;border:none;
+            color:var(--l);font-size:1.8rem;cursor:pointer
         }
-        .nav-links{
-            display:flex;
-            gap:2rem;
-            margin-left:3rem;
-            list-style:none
-        }
-        .nav-link{
-            color:var(--l);
-            text-decoration:none;
-            padding:0.8rem 1.2rem;
-            border-radius:6px;
-            transition:0.2s;
-            display:block /* 修复链接显示 */
-        }
-        .nav-link:hover{background:var(--d)}
 
-        /* 修复内容区 */
-        .landscape{
-            max-width:1400px;
-            margin:4rem auto;
-            padding:0 2rem
+        /* 轮播图 */
+        .carousel{
+            margin:1rem auto;max-width:1400px;
+            overflow:hidden;position:relative;border-radius:8px
         }
-        .card-grid{
-            display:grid;
-            grid-template-columns:repeat(3,1fr);
-            gap:2.5rem;
-            margin-top:3rem
+        .carousel-inner{display:flex;transition:transform .6s;width:100%}
+        .carousel-item{min-width:100%;position:relative}
+        .carousel-item img{
+            width:100%;height:50vh;object-fit:cover;
+            display:block;
+            /* 渐进加载效果 */
+            filter: blur(1px); opacity: 0.9;
+            transition: filter 0.8s ease, opacity 0.8s ease;
         }
-        .card{
-            background:#fff;
-            border-radius:12px;
-            overflow:hidden;
-            box-shadow:0 6px 20px #0001;
-            transition:transform 0.3s;
-            text-decoration:none;
-            color:inherit
+        .carousel-item img.loaded{
+            filter: blur(0); opacity: 1;
         }
-        .card:hover{transform:translateY(-8px)}
-        .card img{
-            width:100%;
-            height:240px;
-            object-fit:cover;
-            border-bottom:3px solid var(--c) /* 添加装饰线 */
+        /* 轮播文字 */
+        .carousel-caption{
+            position:absolute;bottom:0;left:0;right:0;
+            background:rgba(0,0,0,0.6);color:white;
+            padding:1rem;text-align:center
         }
-        .card-content{padding:1.5rem}
 
-        /* 修复页脚 */
+        /* 板块标题 */
+        .section-header{
+            display:flex;justify-content:space-between;
+            align-items:center;margin-bottom:1.5rem
+        }
+        .more-btn{
+            background:var(--c);color:white;border:none;
+            padding:0.5rem 1.2rem;border-radius:4px;cursor:pointer;
+            font-size:0.9rem;transition:opacity 0.3s;font-weight:bold
+        }
+        .more-btn:hover{opacity:0.9}
+
+        /* 校园新闻 - 横向滑动 */
+        .news{
+            max-width:1400px;margin:2rem auto;padding:0 1rem
+        }
+        .horizontal-scroll{
+            display:flex;overflow-x:auto;gap:1.5rem;
+            padding-bottom:1rem;scrollbar-width:thin
+        }
+        .horizontal-scroll::-webkit-scrollbar{height:6px}
+        .horizontal-scroll::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+        .news-card{
+            flex:0 0 300px;background:#fff;border-radius:12px;
+            overflow:hidden;box-shadow:0 3px 8px rgba(0,0,0,0.08);
+            text-decoration:none;color:inherit;display:block
+        }
+        .news-img{
+            width:100%;height:180px;overflow:hidden;position:relative;
+            background:#f5f5f5; /* 加载占位背景 */
+        }
+        .news-img img{
+            width:100%;height:100%;object-fit:cover;
+            transition:transform .5s;
+            /* 渐进加载效果 */
+            filter: blur(1px); opacity: 0.9;
+            transition: filter 0.8s ease, opacity 0.8s ease, transform .5s;
+        }
+        .news-img img.loaded{
+            filter: blur(0); opacity: 1;
+        }
+        .news-card:hover .news-img img{transform:scale(1.05)}
+        .news-content{padding:1.2rem}
+        .view-more{
+            display:block;text-align:center;margin-top:1.5rem
+        }
+        .view-more-btn{
+            background:var(--c);color:white;border:none;
+            padding:0.8rem 2rem;border-radius:4px;cursor:pointer;
+            font-size:1rem;transition:opacity 0.3s
+        }
+        .view-more-btn:hover{opacity:0.9}
+
+        /* 鹊合公告 - 无图片简化版 */
+        .announcement{
+            max-width:1400px;margin:3rem auto;padding:0 1rem
+        }
+        .grid{
+            display:grid;gap:1.5rem;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr))
+        }
+        .announce-card{
+            background:#fff;border-radius:12px;overflow:hidden;
+            box-shadow:0 3px 8px rgba(0,0,0,0.08);transition:transform .3s;
+            text-decoration:none;color:inherit;padding:1.5rem;
+            border-left:4px solid var(--c); /* 左侧色条 */
+        }
+        .announce-card:hover{transform:translateY(-5px)}
+
+        /* 页脚 */
         .footer{
-            background:var(--c);
-            color:var(--l);
-            padding:4rem 5%;
-            margin-top:6rem
+            background:var(--c);color:var(--l);padding:3rem 1rem;margin-top:4rem
         }
         .footer-container{
-            max-width:1400px;
-            margin:0 auto;
-            display:flex;
-            justify-content:space-between;
-            gap:4rem
+            max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2rem
         }
         .footer-section{
-            flex:1;
-            font-size:0.9em /* 缩小字号 */
+            flex:1;min-width:300px;font-size:.9em
         }
         .footer-links{
-            display:grid;
-            grid-template-columns:repeat(2,1fr);
-            gap:1rem;
-            padding:0
+            display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;padding:0
         }
         .footer-link{
-            color:var(--l);
-            text-decoration:none;
-            transition:opacity 0.2s;
-            width:max-content
+            color:var(--l);text-decoration:none;padding:.2rem 0
         }
-        .footer-link:hover{opacity:0.8}
+
+        /* 移动端适配 */
+        @media (max-width:768px){
+            body{padding-top:60px}
+            .menu-btn{display:block}
+            .nav-links{
+                position:fixed;top:60px;right:1rem;background:var(--c);
+                flex-direction:column;width:200px;max-height:0;overflow:hidden;
+                transition:max-height .3s;border-radius:12px;padding:0
+            }
+            .nav-links.active{max-height:320px;padding:1rem 0}
+            .carousel-item img{height:40vh}
+            .news-card{flex:0 0 85%}
+            .announce-card{height:auto}
+            .footer-container{flex-direction:column}
+            .more-btn{padding:0.4rem 1rem;font-size:0.8rem}
+        }
     </style>
 </head>
 <body>
     <nav class="nav">
-        <a href="#"><img src="images/logo.png" alt="鹊华学生合作组织" class="logo"></a>
-        <div class="nav-links">
+        <a href="#"><img src="logo.png" alt="校徽" class="logo"></a>
+        <div class="nav-links" id="navLinks">
             <a href="#" class="nav-link">首页</a>
-            <a href="#" class="nav-link">校园新闻</a>
-            <a href="#" class="nav-link">鹊合组织</a>
-            <a href="#" class="nav-link">鹊合公告</a>
+            <a href="news.html" class="nav-link">校园新闻</a>
+            <a href="qsc.html" class="nav-link">鹊合组织</a>
+            <a href="notice.html" class="nav-link">鹊合公告</a>
         </div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
     </nav>
 
-    <main class="landscape">
-        <h1>校园一景</h1>
-        <div class="card-grid">
-            <a class="card">
-                <img src="images/quehua8.jpg" alt="大门">
-                <div class="card-content">
-                    <h3>校园大门</h3>
-                    <p>欢迎来到鹊华校区</p>
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="images/quehua8.jpg" alt="校园大门" loading="lazy" class="carousel-img">
+                <div class="carousel-caption">
+                    <h3>欢迎来到鹊华</h3>
+                    <p>这里就是你的家园</p>
                 </div>
-            </a>
-            <a class="card">
-                <img src="images/quehua1.jpg" alt="登攀碑">
-                <div class="card-content">
+            </div>
+            <div class="carousel-item">
+                <img src="images/quehua1.jpg" alt="登攀碑" loading="lazy" class="carousel-img">
+                <div class="carousel-caption">
                     <h3>登攀碑</h3>
-                    <p>努力将自己的名字留在上面</p>
+                    <p>努力把自己的名字留在上面</p>
                 </div>
-            </a>
-            <a class="card">
-                <img src="images/quehua4.jpg" alt="俯拍">
-                <div class="card-content">
+            </div>
+            <div class="carousel-item">
+                <img src="images/quehua4.jpg" alt="俯拍" loading="lazy" class="carousel-img">
+                <div class="carousel-caption">
                     <h3>校园俯拍</h3>
-                    <p>美丽校园尽收眼底</p>
+                    <p>大美校园风光尽收眼底</p>
                 </div>
-            </a>
+            </div>
         </div>
+    </div>
+
+    <main>
+        <!-- 校园新闻 - 横向滑动 -->
+        <section class="news">
+            <div class="section-header">
+                <h1>校园新闻</h1>
+            </div>
+            <div class="horizontal-scroll">
+                <a href="news/guanzhidaoju.html" class="news-card">
+                    <div class="news-img">
+                        <img src="images/guanzhidaoju.jpg" alt="管制刀具" loading="lazy">
+                    </div>
+                    <div class="news-content">
+                        <h3>管制刀具控制</h3>
+                        <p>学校发布最新管制刀具控制要求，查看详情...</p>
+                    </div>
+                </a>
+                <a href="news/xueshenghui.html" class="news-card">
+                    <div class="news-img">
+                        <img src="images/xueshenghui.jpg" alt="学生会" loading="lazy">
+                    </div>
+                    <div class="news-content">
+                        <h3>学生会换届名单出炉</h3>
+                        <p>2025年5月学生会换届结果出炉...</p>
+                    </div>
+                </a>
+                <a href="news/kaifangri.html" class="news-card">
+                    <div class="news-img">
+                        <img src="images/kaifangri.jpg" alt="开放日" loading="lazy">
+                    </div>
+                    <div class="news-content">
+                        <h3>鹊华校区开放日</h3>
+                        <p>鹊华校区于7月1日组织校园开放日活动...</p>
+                    </div>
+                </a>
+                <a href="news/xinshengzhinan.html" class="news-card">
+                    <div class="news-img">
+                        <img src="images/ruxuezhinan.jpg" alt="新生入学指南" loading="lazy">
+                    </div>
+                    <div class="news-content">
+                        <h3>高一新生入学指南</h3>
+                        <p>恭喜你成为省实验中学鹊华校区的一员...</p>
+                    </div>
+                </a>
+            </div>
+            <div class="view-more">
+                <button class="view-more-btn" onclick="location.href='news.html'">查看更多新闻</button>
+            </div>
+        </section>
+
+        <!-- 鹊合公告 - 无图片简化版 -->
+        <section class="announcement">
+            <div class="section-header">
+                <h1>鹊合公告</h1>
+                <button class="more-btn" onclick="location.href='announce.html'">查看更多</button>
+            </div>
+            <div class="grid">
+                <a href="qsc/introduction.html" class="announce-card">
+                    <h3>鹊华学生合作组织介绍</h3>
+                    <p>本组织建立于2024年10月，是一个...</p>
+                </a>
+                <a href="qsc/jiaoshixin.html" class="announce-card">
+                    <h3>致鹊华校区全体教师的一封信</h3>
+                    <p>老师好！</p>
+                </a>
+                <a href="detail.html" class="announce-card">
+                    <h3>新成员招募</h3>
+                    <p>鹊合组织开放新成员申请通道，欢迎加入...</p>
+                </a>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -157,20 +267,68 @@
                 <h3>联系我们</h3>
                 <p>总部：2024级36、37班</p>
                 <p>官Q：3583268240</p>
-                <p>官方Q群：992865528<p>
                 <p>邮箱：3583268240@qq.com</p>
             </div>
             <div class="footer-section">
                 <h3>快速链接</h3>
                 <div class="footer-links">
                     <a href="http://sdshiyan.jinan-edu.cn" class="footer-link">省实验官网</a>
-                    <a href="#" class="footer-link">占位</a>
-                    <a href="#" class="footer-link">占位</a>
-                    <a href="https://user.qzone.qq.com/2949225767" class="footer-link">实验表白墙</a>
+                    <a href="map.png" class="footer-link">校区地图</a>
+                    <a href="#" class="footer-link">英语漫游社</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script>
+        // 菜单切换
+        const nav = document.getElementById('navLinks'), btn = document.querySelector('.menu-btn');
+        const toggleMenu = () => {
+            nav.classList.toggle('active');
+            btn.textContent = nav.classList.contains('active') ? '×' : '☰';
+        }
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.nav') && nav.classList.contains('active')) toggleMenu();
+        });
+
+        // 自动轮播
+        let currentSlide = 0;
+        const carousel = document.querySelector('.carousel-inner');
+        const slides = document.querySelectorAll('.carousel-item');
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        
+        setInterval(nextSlide, 5000);
+
+        // 渐进式图片加载
+        function initProgressiveImages() {
+            const images = document.querySelectorAll('img');
+            
+            images.forEach(img => {
+                if (img.complete) {
+                    // 图片已缓存
+                    img.classList.add('loaded');
+                } else {
+                    // 监听加载完成
+                    img.addEventListener('load', function() {
+                        this.classList.add('loaded');
+                    });
+                    
+                    // 错误处理
+                    img.addEventListener('error', function() {
+                        console.error('图片加载失败:', this.src);
+                    });
+                }
+            });
+        }
+        
+        // 初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            initProgressiveImages();
+        });
+    </script>
 </body>
-              </html>
+</html>
