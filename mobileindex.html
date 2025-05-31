@@ -21,7 +21,7 @@
             background: #f8f9fa;
         }
         
-        /* 导航栏 - 加宽优化 */
+        /* 导航栏优化 */
         .nav {
             background: var(--c);
             padding: 1rem;
@@ -40,8 +40,6 @@
             position: absolute;
             left: 1.5rem;
             border-radius: 4px;
-            padding: 2px;
-            background: white;
         }
         .nav-links {
             display: flex;
@@ -213,10 +211,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform .5s;
             filter: blur(1px);
             opacity: 0.9;
-            transition: filter 0.8s ease, opacity 0.8s ease, transform .5s;
+            transition: all 0.8s ease;
         }
         .news-img img.loaded {
             filter: blur(0);
@@ -357,6 +354,9 @@
 
         /* 移动端适配 */
         @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
             body {
                 padding-top: 65px;
             }
@@ -370,9 +370,6 @@
             }
             .menu-btn {
                 display: flex;
-                font-size: 1.8rem;
-                width: 40px;
-                height: 40px;
                 right: 1rem;
             }
             .nav-links {
@@ -526,7 +523,7 @@
         <section class="news">
             <div class="section-header">
                 <h1>校园新闻</h1>
-                <button class="more-btn" onclick="location.href='news.html'">查看更多</button>
+                <button class="more-btn" onclick="location.href='news.html'">查看更多→</button>
             </div>
             <div class="horizontal-scroll">
                 <a href="news/guanzhidaoju.html" class="news-card">
@@ -572,7 +569,7 @@
         <section class="announcement">
             <div class="section-header">
                 <h1>鹊合公告</h1>
-                <button class="more-btn" onclick="location.href='announce.html'">查看更多</button>
+                <button class="more-btn" onclick="location.href='notice.html'">查看更多→</button>
             </div>
             <div class="grid">
                 <a href="qsc/introduction.html" class="announce-card">
