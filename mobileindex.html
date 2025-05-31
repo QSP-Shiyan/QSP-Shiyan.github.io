@@ -40,6 +40,8 @@
             position: absolute;
             left: 1.5rem;
             border-radius: 4px;
+            top: 50%;
+            transform: translateY(-50%);
         }
         .nav-links {
             display: flex;
@@ -124,6 +126,27 @@
         .carousel-caption p {
             font-size: 1.2rem;
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .carousel-indicator.active {
+            background: var(--c);
+            transform: scale(1.2);
         }
 
         /* 板块标题优化 */
@@ -343,14 +366,6 @@
             margin-right: 8px;
             font-weight: bold;
         }
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-size: 1rem;
-            color: rgba(255,255,255,0.8);
-        }
 
         /* 移动端适配 */
         @media (max-width: 768px) {
@@ -472,11 +487,6 @@
             .footer-link {
                 font-size: 1rem;
             }
-            .copyright {
-                padding-top: 1.5rem;
-                margin-top: 1.5rem;
-                font-size: 0.9rem;
-            }
         }
     </style>
 </head>
@@ -516,6 +526,7 @@
                 </div>
             </div>
         </div>
+        <div class="carousel-indicators" id="carouselIndicators"></div>
     </div>
 
     <main>
@@ -623,10 +634,36 @@
         let currentSlide = 0;
         const carousel = document.querySelector('.carousel-inner');
         const slides = document.querySelectorAll('.carousel-item');
+        const indicatorsContainer = document.getElementById('carouselIndicators');
+        
+        // 创建轮播指示器
+        slides.forEach((slide, index) => {
+            const indicator = document.createElement('div');
+            indicator.classList.add('carousel-indicator');
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                updateCarousel();
+            });
+            indicatorsContainer.appendChild(indicator);
+        });
+        
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // 更新指示器状态
+            document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
+                if (index === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
         
         function nextSlide() {
             currentSlide = (currentSlide + 1) % slides.length;
-            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateCarousel();
         }
         
         setInterval(nextSlide, 5000);
