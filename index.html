@@ -5,160 +5,420 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>鹊华学生合作组织</title>
     <style>
-        :root{--c:#a3111b;--l:rgba(255,255,255,0.9)}
-        *{margin:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
-        body{line-height:1.6;color:#333;padding-top:60px}
-        
-        /* 导航栏 */
-        .nav{
-            background:var(--c);padding:.8rem;
-            position:fixed;top:0;width:100%;
-            display:flex;justify-content:space-between;align-items:center;z-index:1000
+        :root {
+            --c: #a3111b;
+            --l: rgba(255,255,255,0.9);
         }
-        .logo{height:40px;display:block}
-        .nav-links{display:flex;gap:1rem;list-style:none}
-        .nav-link{color:var(--l);text-decoration:none;padding:.4rem}
-        .menu-btn{
-            display:none;background:transparent;border:none;
-            color:var(--l);font-size:1.8rem;cursor:pointer
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: #333;
+            padding-top: 60px;
+        }
+        
+        /* 导航栏 - 桌面端居中 */
+        .nav {
+            background: var(--c);
+            padding: .8rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center; /* 居中显示 */
+            align-items: center;
+            z-index: 1000;
+        }
+        .logo {
+            height: 40px;
+            position: absolute; /* 左侧定位 */
+            left: 1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin: 0 auto; /* 居中关键 */
+        }
+        .nav-link {
+            color: var(--l);
+            text-decoration: none;
+            padding: .4rem .8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+        }
+        .menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--l);
+            font-size: 1.8rem;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
         }
 
-        /* 轮播图 */
-        .carousel{
-            margin:1rem auto;max-width:1400px;
-            overflow:hidden;position:relative;border-radius:8px
+        /* 轮播图尺寸优化 */
+        .carousel {
+            margin: 1rem auto;
+            max-width: 1400px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px;
         }
-        .carousel-inner{display:flex;transition:transform .6s;width:100%}
-        .carousel-item{min-width:100%;position:relative}
-        .carousel-item img{
-            width:100%;height:50vh;object-fit:cover;
-            display:block;
-            /* 渐进加载效果 */
-            filter: blur(1px); opacity: 0.9;
+        .carousel-inner {
+            display: flex;
+            transition: transform .6s;
+            width: 100%;
+        }
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 40vh; /* 从50vh调整为40vh */
+            max-height: 500px; /* 添加最大高度限制 */
+            object-fit: cover;
+            display: block;
+            filter: blur(1px);
+            opacity: 0.9;
             transition: filter 0.8s ease, opacity 0.8s ease;
         }
-        .carousel-item img.loaded{
-            filter: blur(0); opacity: 1;
+        .carousel-item img.loaded {
+            filter: blur(0);
+            opacity: 1;
         }
-        /* 轮播文字 */
-        .carousel-caption{
-            position:absolute;bottom:0;left:0;right:0;
-            background:rgba(0,0,0,0.6);color:white;
-            padding:1rem;text-align:center
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .carousel-caption h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .carousel-caption p {
+            font-size: 1.2rem;
         }
 
         /* 板块标题 */
-        .section-header{
-            display:flex;justify-content:space-between;
-            align-items:center;margin-bottom:1.5rem
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
         }
-        .more-btn{
-            background:var(--c);color:white;border:none;
-            padding:0.5rem 1.2rem;border-radius:4px;cursor:pointer;
-            font-size:0.9rem;transition:opacity 0.3s;font-weight:bold
+        .section-header h1 {
+            font-size: 2rem;
+            color: var(--c);
+            position: relative;
+            padding-bottom: 0.5rem;
         }
-        .more-btn:hover{opacity:0.9}
+        .section-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--c);
+        }
+        .more-btn {
+            background: var(--c);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        .more-btn:hover {
+            background: #8a0e16;
+            transform: translateY(-2px);
+        }
 
-        /* 校园新闻 - 横向滑动 */
-        .news{
-            max-width:1400px;margin:2rem auto;padding:0 1rem
+        /* 校园新闻 - 卡片宽度加倍 */
+        .news {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 1rem;
         }
-        .horizontal-scroll{
-            display:flex;overflow-x:auto;gap:1.5rem;
-            padding-bottom:1rem;scrollbar-width:thin
+        .horizontal-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
         }
-        .horizontal-scroll::-webkit-scrollbar{height:6px}
-        .horizontal-scroll::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
-        .news-card{
-            flex:0 0 300px;background:#fff;border-radius:12px;
-            overflow:hidden;box-shadow:0 3px 8px rgba(0,0,0,0.08);
-            text-decoration:none;color:inherit;display:block
+        .horizontal-scroll::-webkit-scrollbar {
+            height: 6px;
         }
-        .news-img{
-            width:100%;height:180px;overflow:hidden;position:relative;
-            background:#f5f5f5; /* 加载占位背景 */
+        .horizontal-scroll::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
         }
-        .news-img img{
-            width:100%;height:100%;object-fit:cover;
-            transition:transform .5s;
-            /* 渐进加载效果 */
-            filter: blur(1px); opacity: 0.9;
+        .news-card {
+            flex: 0 0 600px; /* 宽度从300px增加到600px */
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .news-img {
+            width: 100%;
+            height: 360px; /* 高度从180px增加到360px */
+            overflow: hidden;
+            position: relative;
+            background: #f5f5f5;
+        }
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s;
+            filter: blur(1px);
+            opacity: 0.9;
             transition: filter 0.8s ease, opacity 0.8s ease, transform .5s;
         }
-        .news-img img.loaded{
-            filter: blur(0); opacity: 1;
+        .news-img img.loaded {
+            filter: blur(0);
+            opacity: 1;
         }
-        .news-card:hover .news-img img{transform:scale(1.05)}
-        .news-content{padding:1.2rem}
-        .view-more{
-            display:block;text-align:center;margin-top:1.5rem
+        .news-card:hover .news-img img {
+            transform: scale(1.05);
         }
-        .view-more-btn{
-            background:var(--c);color:white;border:none;
-            padding:0.8rem 2rem;border-radius:4px;cursor:pointer;
-            font-size:1rem;transition:opacity 0.3s
+        .news-content {
+            padding: 1.5rem;
         }
-        .view-more-btn:hover{opacity:0.9}
+        .news-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #222;
+        }
+        .news-content p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .view-more {
+            display: block;
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+        .view-more-btn {
+            background: var(--c);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        .view-more-btn:hover {
+            background: #8a0e16;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(163, 17, 27, 0.3);
+        }
 
-        /* 鹊合公告 - 无图片简化版 */
-        .announcement{
-            max-width:1400px;margin:3rem auto;padding:0 1rem
+        /* 鹊合公告 */
+        .announcement {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 1rem;
         }
-        .grid{
-            display:grid;gap:1.5rem;
-            grid-template-columns:repeat(auto-fit,minmax(300px,1fr))
+        .grid {
+            display: grid;
+            gap: 1.8rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         }
-        .announce-card{
-            background:#fff;border-radius:12px;overflow:hidden;
-            box-shadow:0 3px 8px rgba(0,0,0,0.08);transition:transform .3s;
-            text-decoration:none;color:inherit;padding:1.5rem;
-            border-left:4px solid var(--c); /* 左侧色条 */
+        .announce-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all .3s;
+            text-decoration: none;
+            color: inherit;
+            padding: 2rem;
+            border-left: 5px solid var(--c);
+            display: flex;
+            flex-direction: column;
         }
-        .announce-card:hover{transform:translateY(-5px)}
+        .announce-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .announce-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #222;
+        }
+        .announce-card p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        .announce-card .date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
 
         /* 页脚 */
-        .footer{
-            background:var(--c);color:var(--l);padding:3rem 1rem;margin-top:4rem
+        .footer {
+            background: var(--c);
+            color: var(--l);
+            padding: 4rem 1rem;
+            margin-top: 4rem;
         }
-        .footer-container{
-            max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2rem
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
         }
-        .footer-section{
-            flex:1;min-width:300px;font-size:.9em
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
         }
-        .footer-links{
-            display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;padding:0
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
         }
-        .footer-link{
-            color:var(--l);text-decoration:none;padding:.2rem 0
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: rgba(255,255,255,0.7);
+        }
+        .footer-section p {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 0;
+        }
+        .footer-link {
+            color: var(--l);
+            text-decoration: none;
+            padding: 0.4rem 0;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        .footer-link:hover {
+            padding-left: 8px;
+        }
+        .footer-link::before {
+            content: '›';
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
         }
 
         /* 移动端适配 */
-        @media (max-width:768px){
-            body{padding-top:60px}
-            .menu-btn{display:block}
-            .nav-links{
-                position:fixed;top:60px;right:1rem;background:var(--c);
-                flex-direction:column;width:200px;max-height:0;overflow:hidden;
-                transition:max-height .3s;border-radius:12px;padding:0
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
             }
-            .nav-links.active{max-height:320px;padding:1rem 0}
-            .carousel-item img{height:40vh}
-            .news-card{flex:0 0 85%}
-            .announce-card{height:auto}
-            .footer-container{flex-direction:column}
-            .more-btn{padding:0.4rem 1rem;font-size:0.8rem}
+            .menu-btn {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                right: 1rem;
+                background: var(--c);
+                flex-direction: column;
+                width: 200px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height .3s;
+                border-radius: 12px;
+                padding: 0;
+            }
+            .nav-links.active {
+                max-height: 320px;
+                padding: 1rem 0;
+            }
+            .carousel-item img {
+                height: 35vh;
+            }
+            .news-card {
+                flex: 0 0 85%;
+            }
+            .news-img {
+                height: 200px;
+            }
+            .announce-card {
+                height: auto;
+            }
+            .footer-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .more-btn {
+                padding: 0.5rem 1.2rem;
+            }
+            .section-header h1 {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="nav">
-        <a href="#"><img src="logo.png" alt="校徽" class="logo"></a>
+        <a href="#"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9IiNhMzExMWIiLz48dGV4dCB4PSIyMCIgeT0iMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPlFIQ08gTG9nbzwvdGV4dD48L3N2Zz4=" alt="鹊合组织logo" class="logo"></a>
         <div class="nav-links" id="navLinks">
             <a href="#" class="nav-link">首页</a>
             <a href="news.html" class="nav-link">校园新闻</a>
             <a href="qsc.html" class="nav-link">鹊合组织</a>
             <a href="notice.html" class="nav-link">鹊合公告</a>
+            <a href="about.html" class="nav-link">关于我们</a>
         </div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
     </nav>
@@ -166,21 +426,21 @@
     <div class="carousel">
         <div class="carousel-inner">
             <div class="carousel-item">
-                <img src="images/quehua8.jpg" alt="校园大门" loading="lazy" class="carousel-img">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDE0MDAgNDAwIj48cmVjdCB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNlZWUiLz48dGV4dCB4PSI3MDAiIHk9IjIwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjYWFhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7nrqHnkIblj7DnmoTkuK3lm73pg73mmK/kuIDkuKrmlrA8L3RleHQ+PC9zdmc+" alt="校园大门" loading="lazy" class="carousel-img loaded">
                 <div class="carousel-caption">
                     <h3>欢迎来到鹊华</h3>
                     <p>这里就是你的家园</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="images/quehua1.jpg" alt="登攀碑" loading="lazy" class="carousel-img">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDE0MDAgNDAwIj48cmVjdCB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNlZGU1ZTMiLz48dGV4dCB4PSI3MDAiIHk9IjIwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjYWFhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7ml7blsI/lvLc8L3RleHQ+PC9zdmc+" alt="登攀碑" loading="lazy" class="carousel-img loaded">
                 <div class="carousel-caption">
                     <h3>登攀碑</h3>
                     <p>努力把自己的名字留在上面</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="images/quehua4.jpg" alt="俯拍" loading="lazy" class="carousel-img">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDE0MDAgNDAwIj48cmVjdCB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNmM2YzZjMiLz48dGV4dCB4PSI3MDAiIHk9IjIwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjYWFhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7lm73lrrblt7Tpu47lj6/ku6Xlm73lrZA8L3RleHQ+PC9zdmc+" alt="俯拍" loading="lazy" class="carousel-img loaded">
                 <div class="carousel-caption">
                     <h3>校园俯拍</h3>
                     <p>大美校园风光尽收眼底</p>
@@ -198,25 +458,25 @@
             <div class="horizontal-scroll">
                 <a href="news/guanzhidaoju.html" class="news-card">
                     <div class="news-img">
-                        <img src="images/guanzhidaoju.jpg" alt="管制刀具" loading="lazy">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzYwIiB2aWV3Qm94PSIwIDAgNjAwIDM2MCI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzNjAiIGZpbGw9IiNmNWY1ZjUiLz48dGV4dCB4PSIzMDAiIHk9IjE4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIyIiBmaWxsPSIjYWFhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7nrqHnkIblj7DpgInmi6nnmoTlpKflrablhY3otLnvvIzlj6/ku6Xov5Dliqg8L3RleHQ+PC9zdmc+" alt="管制刀具" loading="lazy" class="loaded">
                     </div>
                     <div class="news-content">
                         <h3>管制刀具控制</h3>
-                        <p>学校发布最新管制刀具控制要求，查看详情...</p>
+                        <p>学校发布最新管制刀具控制要求，明确校园安全规范，确保师生安全...</p>
                     </div>
                 </a>
                 <a href="news/xueshenghui.html" class="news-card">
                     <div class="news-img">
-                        <img src="images/xueshenghui.jpg" alt="学生会" loading="lazy">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzYwIiB2aWV3Qm94PSIwIDAgNjAwIDM2MCI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzNjAiIGZpbGw9IiNmMGY1ZjkiLz48dGV4dCB4PSIzMDAiIHk9IjE4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIyIiBmaWxsPSIjYWFhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7lm73lrrbkvZPogIXmlrDnmoTljY7kurrmsqHmnInmiZPlj7DvvIzlj6/ku6Xov5Dliqg8L3RleHQ+PC9zdmc+" alt="学生会" loading="lazy" class="loaded">
                     </div>
                     <div class="news-content">
                         <h3>学生会换届名单出炉</h3>
-                        <p>2025年5月学生会换届结果出炉...</p>
+                        <p>2025年5月学生会换届选举结果正式公布...</p>
                     </div>
                 </a>
                 <a href="news/kaifangri.html" class="news-card">
                     <div class="news-img">
-                        <img src="images/kaifangri.jpg" alt="开放日" loading="lazy">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzYwIiB2aWV3Qm94PSIwIDAgNjAwIDM2MCI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzNjAiIGZpbGw9IiNmNWYxZjAiLz48dGV4dCB4PSIzMDAiIHk9IjE4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIyIiBmaWxsPSIjYWFhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7nrqHnkIblm73lrZDkuI7lsI/lvLfmlrDnmoTlm73lrrbkuLrmlrA8L3RleHQ+PC9zdmc+" alt="开放日" loading="lazy" class="loaded">
                     </div>
                     <div class="news-content">
                         <h3>鹊华校区开放日</h3>
@@ -225,11 +485,11 @@
                 </a>
                 <a href="news/xinshengzhinan.html" class="news-card">
                     <div class="news-img">
-                        <img src="images/ruxuezhinan.jpg" alt="新生入学指南" loading="lazy">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzYwIiB2aWV3Qm94PSIwIDAgNjAwIDM2MCI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzNjAiIGZpbGw9IiNmNGY4ZjkiLz48dGV4dCB4PSIzMDAiIHk9IjE4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIyIiBmaWxsPSIjYWFhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7np5HliLjmr5TovoPkuLrkuqTmmJM8L3RleHQ+PC9zdmc+" alt="新生入学指南" loading="lazy" class="loaded">
                     </div>
                     <div class="news-content">
                         <h3>高一新生入学指南</h3>
-                        <p>恭喜你成为省实验中学鹊华校区的一员...</p>
+                        <p>恭喜你成为省实验中学鹊华校区的一员！请查收这份详细的入学指南...</p>
                     </div>
                 </a>
             </div>
@@ -238,7 +498,7 @@
             </div>
         </section>
 
-        <!-- 鹊合公告 - 无图片简化版 -->
+        <!-- 鹊合公告 -->
         <section class="announcement">
             <div class="section-header">
                 <h1>鹊合公告</h1>
@@ -247,15 +507,18 @@
             <div class="grid">
                 <a href="qsc/introduction.html" class="announce-card">
                     <h3>鹊华学生合作组织介绍</h3>
-                    <p>本组织建立于2024年10月，是一个...</p>
+                    <p>本组织建立于2024年10月，是一个致力于服务学生、促进学生发展的学生自治组织。</p>
+                    <div class="date">2024年10月10日</div>
                 </a>
                 <a href="qsc/jiaoshixin.html" class="announce-card">
                     <h3>致鹊华校区全体教师的一封信</h3>
                     <p>老师好！</p>
+                    <div class="date">2025年6月1日</div>
                 </a>
-                <a href="detail.html" class="announce-card">
+                <a href="qsc/xinchengyuan.html" class="announce-card">
                     <h3>新成员招募</h3>
-                    <p>鹊合组织开放新成员申请通道，欢迎加入...</p>
+                    <p>鹊合组织开放新成员申请通道，欢迎有热情、有责任心的同学加入我们。无论你有什么特长，只要愿意为同学们服务，我们都欢迎！</p>
+                    <div class="date">2025年5月31日</div>
                 </a>
             </div>
         </section>
@@ -266,8 +529,8 @@
             <div class="footer-section">
                 <h3>联系我们</h3>
                 <p>总部：2024级36、37班</p>
-                <p>官Q：3583268240</p>
-                <p>邮箱：3583268240@qq.com</p>
+                <p>官方QQ：3583268240</p>
+                <p>电子邮箱：3583268240@qq.com</p>
             </div>
             <div class="footer-section">
                 <h3>快速链接</h3>
@@ -282,7 +545,8 @@
 
     <script>
         // 菜单切换
-        const nav = document.getElementById('navLinks'), btn = document.querySelector('.menu-btn');
+        const nav = document.getElementById('navLinks');
+        const btn = document.querySelector('.menu-btn');
         const toggleMenu = () => {
             nav.classList.toggle('active');
             btn.textContent = nav.classList.contains('active') ? '×' : '☰';
@@ -309,15 +573,12 @@
             
             images.forEach(img => {
                 if (img.complete) {
-                    // 图片已缓存
                     img.classList.add('loaded');
                 } else {
-                    // 监听加载完成
                     img.addEventListener('load', function() {
                         this.classList.add('loaded');
                     });
                     
-                    // 错误处理
                     img.addEventListener('error', function() {
                         console.error('图片加载失败:', this.src);
                     });
