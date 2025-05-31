@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航栏与页脚模板</title>
+    <style>
+        :root {
+            --primary-color: #a3111b;
+            --light-color: rgba(255, 255, 255, 0.9);
+            --text-color: #333;
+            --background-color: #f8f9fa;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            padding-top: 70px;
+            background: var(--background-color);
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* 导航栏样式 */
+        .nav {
+            background: var(--primary-color);
+            padding: 1rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 70px;
+        }
+        
+        .logo {
+            height: 42px;
+            position: absolute;
+            left: 1.5rem;
+            border-radius: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            margin: 0 auto;
+        }
+        
+        .nav-link {
+            color: var(--light-color);
+            text-decoration: none;
+            padding: .6rem 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            font-size: 1.1rem;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .menu-btn {
+            display: none;
+            background: transparent;
+            color: var(--light-color);
+            font-size: 1.8rem;
+            cursor: pointer;
+            position: absolute;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            z-index: 1001;
+        }
+        
+        /* 页脚样式 */
+        .footer {
+            background: var(--primary-color);
+            color: var(--light-color);
+            padding: 4rem 1rem;
+            margin-top: auto;
+            border-top: 3px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-section p {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 0;
+        }
+        
+        .footer-link {
+            color: var(--light-color);
+            text-decoration: none;
+            padding: 0.4rem 0;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-link:hover {
+            padding-left: 8px;
+        }
+        
+        .footer-link::before {
+            content: '›';
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+            
+            body {
+                padding-top: 65px;
+            }
+            
+            .nav {
+                padding: 0.8rem;
+                height: 65px;
+            }
+            
+            .logo {
+                height: 36px;
+                left: 1rem;
+            }
+            
+            .menu-btn {
+                display: flex;
+                right: 1rem;
+            }
+            
+            .nav-links {
+                top: 65px;
+                right: 1rem;
+                width: 200px;
+                border-radius: 8px;
+                position: fixed;
+                background: var(--primary-color);
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height .3s;
+                padding: 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-links.active {
+                max-height: 320px;
+                padding: 1rem 0;
+            }
+            
+            .nav-link {
+                padding: 0.5rem 1rem;
+                font-size: 1.1rem;
+            }
+            
+            .footer {
+                padding: 3rem 1rem;
+            }
+            
+            .footer-section h3 {
+                font-size: 1.3rem;
+            }
+            
+            .footer-section p {
+                font-size: 1rem;
+            }
+            
+            .footer-link {
+                font-size: 1rem;
+            }
+        }
+        
+        /* 主内容区域示例样式 */
+        .main-content {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .content-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+        }
+        
+        .content-section {
+            margin-bottom: 2rem;
+        }
+        
+        .content-section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .flex-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .flex-box {
+            flex: 1;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="nav">
+        <a href="index.html"><img src="images/logo.png" alt="校徽" class="logo"></a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">首页</a>
+            <a href="news.html" class="nav-link">校园新闻</a>
+            <a href="qsc.html" class="nav-link">鹊合组织</a>
+            <a href="notice.html" class="nav-link">鹊合公告</a>
+        </div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    </nav>
+
+    <!-- 主内容区域 (示例) -->
+    <div class="main-content">
+        <h2 class="content-title">通用页面模板</h2>
+        
+        <div class="content-section">
+            <h3>导航栏和页脚模板</h3>
+            <p>此页面展示了可复用的导航栏和页脚组件。您可以在任何子页面中使用这些组件，保持网站设计的一致性。</p>
+            <p>导航栏包含响应式设计，在移动设备上会自动转换为汉堡菜单。页脚包含联系信息和常用链接。</p>
+        </div>
+        
+        <div class="content-section">
+            <h3>使用说明</h3>
+            <p>要将此模板用于其他页面：</p>
+            <ol>
+                <li>复制导航栏代码到页面顶部</li>
+                <li>复制页脚代码到页面底部</li>
+                <li>确保包含相应的CSS和JavaScript</li>
+                <li>更新链接以匹配您的页面结构</li>
+            </ol>
+        </div>
+        
+        <div class="flex-container">
+            <div class="flex-box">
+                <h4>导航栏功能</h4>
+                <p>• 响应式设计</p>
+                <p>• 移动端汉堡菜单</p>
+                <p>• 品牌Logo链接</p>
+                <p>• 活动状态指示</p>
+            </div>
+            
+            <div class="flex-box">
+                <h4>页脚功能</h4>
+                <p>• 多列布局</p>
+                <p>• 联系信息区域</p>
+                <p>• 快速链接</p>
+                <p>• 响应式设计</p>
+            </div>
+            
+            <div class="flex-box">
+                <h4>自定义选项</h4>
+                <p>• 修改主题颜色</p>
+                <p>• 更新链接文本</p>
+                <p>• 添加/删除菜单项</p>
+                <p>• 调整间距和大小</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>总部：2024级36、37班</p>
+                <p>官Q：3583268240</p>
+                <p>邮箱：3583268240@qq.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <div class="footer-links">
+                    <a href="http://sdshiyan.jinan-edu.cn" class="footer-link">省实验官网</a>
+                    <a href="images/map.html" class="footer-link">校区地图</a>
+                    <a href="qsc/eng.html" class="footer-link">占位</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 菜单切换功能
+        const nav = document.getElementById('navLinks');
+        const btn = document.querySelector('.menu-btn');
+        const toggleMenu = () => {
+            nav.classList.toggle('active');
+            btn.textContent = nav.classList.contains('active') ? '×' : '☰';
+        }
+        
+        // 点击页面其他区域关闭菜单
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.nav') && nav.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+        
+        // 当前页面高亮
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage || 
+                   (linkPage === 'index.html' && (currentPage === '' || currentPage === 'index.html'))) {
+                    link.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                    link.style.fontWeight = 'bold';
+                }
+            });
+        });
+    </script>
+</body>
+    </html>
