@@ -5,293 +5,519 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>鹊华学生合作组织</title>
     <style>
-        /* 全局变量定义 */
-        :root{
-            --c: #a3111b;          /* 主色调 */
-            --l: #f8f8f8;          /* 浅白色 */
-            --border-color: #333;  /* 边框颜色 */
+        :root {
+            --c: #a3111b;
+            --l: rgba(255,255,255,0.9);
+            --border-dark: #8a0e16;
+        }
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: #333;
+            padding-top: 60px;
+            background: #f8f9fa;
+        }
+        
+        /* 导航栏 - 移动端优化 */
+        .nav {
+            background: var(--c);
+            padding: .8rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 60px; /* 固定高度 */
+        }
+        .logo {
+            height: 36px; /* 缩小校徽尺寸 */
+            position: absolute;
+            left: 1rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 4px;
+            padding: 2px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin: 0 auto;
+        }
+        .nav-link {
+            color: var(--l);
+            text-decoration: none;
+            padding: .4rem .8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid rgba(0,0,0,0.3);
+            border-radius: 4px;
+            color: var(--l);
+            font-size: 1.5rem; /* 缩小菜单按钮 */
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            width: 36px; /* 缩小尺寸 */
+            height: 36px; /* 缩小尺寸 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* 基础样式 */
-        *{
-            margin:0;
-            box-sizing:border-box;
-            font-family:-apple-system,sans-serif;
-            font-size:16px;
-            line-height:1.5;
+        /* 轮播图尺寸优化 - 移动端 */
+        .carousel {
+            margin: 1rem auto;
+            max-width: 1400px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-
-        /* 导航栏 */
-        .nav{
-            background:var(--c);
-            padding:0.6rem 1rem;
-            position:fixed;
-            top:0;
-            width:100%;
-            z-index:1000;
+        .carousel-inner {
+            display: flex;
+            transition: transform .6s;
+            width: 100%;
         }
-        .logo{
-            height:36px;
-            display:block;
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
         }
-        .nav-links{
-            display:flex;
-            gap:1.2rem;
-            list-style:none;
-            justify-content:center;  /* 桌面端链接居中 */
-            margin-top:0.2rem;
-        }
-        .nav-link{
-            color:var(--l);
-            text-decoration:none;
-            padding:0.3rem 0.8rem;
-            transition:opacity 0.3s;
-        }
-        .nav-link:hover{
-            opacity:0.9;
-        }
-        .menu-btn{
-            display:none;  /* 桌面端隐藏菜单按钮 */
-        }
-
-        /* 轮播图 */
-        .carousel{
-            margin:1rem auto;
-            max-width:1400px;
-            overflow:hidden;
-            border-radius:8px;
-            margin-top:60px;  /* 避开导航栏 */
-        }
-        .carousel-inner{
-            display:flex;
-            transition:transform .6s;
-            width:100%;
-        }
-        .carousel-item{
-            min-width:100%;
-        }
-        .carousel-item img{
-            width:100%;
-            height:35vh;  /* 桌面端高度 */
-            object-fit:cover;
+        .carousel-item img {
+            width: 100%;
+            height: 40vh;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
             filter: blur(1px);
-            opacity:0.9;
-            transition:filter 0.8s ease, opacity 0.8s ease;
+            opacity: 0.9;
+            transition: filter 0.8s ease, opacity 0.8s ease;
         }
-        .carousel-item img.loaded{
+        .carousel-item img.loaded {
             filter: blur(0);
-            opacity:1;
+            opacity: 1;
         }
-        .carousel-caption{
-            position:absolute;
-            bottom:0;
-            left:0;
-            right:0;
-            background:rgba(0,0,0,0.6);
-            color:white;
-            padding:1rem;
-            text-align:center;
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 1rem; /* 减小内边距 */
+            text-align: center;
         }
-
-        /* 板块标题 */
-        .section-header{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            margin-bottom:1.2rem;
-            padding:0 1rem;
+        .carousel-caption h3 {
+            font-size: 1.5rem; /* 减小字体大小 */
+            margin-bottom: 0.3rem; /* 减小间距 */
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
-        .more-btn{
-            background:var(--c);
-            color:white;
-            border:1px solid var(--border-color);  /* 深色边框 */
-            padding:0.5rem 1.2rem;
-            border-radius:4px;
-            cursor:pointer;
-            font-size:0.9rem;
-            transition:opacity 0.3s;
-        }
-        .more-btn:hover{
-            opacity:0.9;
+        .carousel-caption p {
+            font-size: 1rem; /* 减小字体大小 */
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
-        /* 校园新闻 */
-        .news{
-            max-width:1400px;
-            margin:2rem auto;
+        /* 板块标题 - 移动端优化 */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem; /* 减小间距 */
+            padding: 0 1rem;
         }
-        .horizontal-scroll{
-            display:flex;
-            overflow-x:auto;
-            gap:1.5rem;
-            padding-bottom:1rem;
-            padding:0 1rem;
+        .section-header h1 {
+            font-size: 1.8rem; /* 减小字体大小 */
+            color: var(--c);
+            position: relative;
+            padding-bottom: 0.3rem; /* 减小间距 */
         }
-        .news-card{
-            flex:0 0 calc(50% - 1.5rem);  /* 宽度调整为两倍 */
-            min-width:350px;
-            background:#fff;
-            border-radius:12px;
-            overflow:hidden;
-            box-shadow:0 3px 8px rgba(0,0,0,0.08);
-            text-decoration:none;
-            color:inherit;
-            display:block;
-            position:relative;  /* 文字定位基础 */
+        .section-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px; /* 减小宽度 */
+            height: 2px; /* 减小高度 */
+            background: var(--c);
         }
-        .news-img{
-            width:100%;
-            height:180px;
-            overflow:hidden;
-            background:#f5f5f5;
+        .more-btn {
+            background: var(--c);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem; /* 减小内边距 */
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem; /* 减小字体大小 */
+            transition: all 0.3s;
+            font-weight: bold;
+            border: 1px solid var(--border-dark);
         }
-        .news-img img{
-            width:100%;
-            height:100%;
-            object-fit:cover;
-            transition:transform .5s;
+        .more-btn:hover {
+            background: #8a0e16;
+            transform: translateY(-2px);
+        }
+
+        /* 校园新闻 - 移动端卡片优化 */
+        .news {
+            max-width: 1400px;
+            margin: 2rem auto; /* 减小外边距 */
+            padding: 0 1rem;
+        }
+        .horizontal-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem; /* 减小间距 */
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
+        }
+        .horizontal-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        .horizontal-scroll::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+        .news-card {
+            flex: 0 0 300px; /* 减小卡片宽度 */
+            background: #fff;
+            border-radius: 10px; /* 减小圆角 */
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* 减小阴影 */
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .news-card:hover {
+            transform: translateY(-5px); /* 减小上移距离 */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* 减小阴影 */
+        }
+        .news-img {
+            width: 100%;
+            height: 180px; /* 减小高度 */
+            overflow: hidden;
+            position: relative;
+            background: #f5f5f5;
+        }
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s;
             filter: blur(1px);
-            opacity:0.9;
-            transition:filter 0.8s ease, opacity 0.8s ease, transform .5s;
+            opacity: 0.9;
+            transition: filter 0.8s ease, opacity 0.8s ease, transform .5s;
         }
-        .news-img img.loaded{
+        .news-img img.loaded {
             filter: blur(0);
-            opacity:1;
+            opacity: 1;
         }
-        .news-card:hover .news-img img{
-            transform:scale(1.05);
+        .news-card:hover .news-img img {
+            transform: scale(1.03); /* 减小缩放 */
         }
-        .news-content{
-            position:absolute;  /* 文字覆盖图片 */
-            bottom:0;
-            left:0;
-            right:0;
-            background:rgba(0,0,0,0.8);
-            color:white;
-            padding:1rem;
+        .news-content {
+            padding: 1rem; /* 减小内边距 */
         }
-        .view-more-btn{
-            background:var(--c);
-            color:white;
-            border:1px solid var(--border-color);  /* 深色边框 */
-            padding:0.8rem 2rem;
-            border-radius:4px;
-            cursor:pointer;
-            font-size:1rem;
-            transition:opacity 0.3s;
-            display:block;
-            text-align:center;
-            margin:1.5rem auto;
+        .news-content h3 {
+            font-size: 1.2rem; /* 减小字体大小 */
+            margin-bottom: 0.5rem; /* 减小间距 */
+            color: #222;
         }
-        .view-more-btn:hover{
-            opacity:0.9;
+        .news-content p {
+            color: #555;
+            font-size: 0.95rem; /* 减小字体大小 */
+            line-height: 1.5; /* 减小行高 */
         }
-
-        /* 鹊合公告 */
-        .announcement{
-            max-width:1400px;
-            margin:3rem auto;
+        .view-more {
+            display: block;
+            text-align: center;
+            margin-top: 2rem; /* 减小间距 */
         }
-        .grid{
-            display:grid;
-            gap:1.2rem;
-            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-            padding:0 1rem;
+        .view-more-btn {
+            background: var(--c);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem; /* 减小内边距 */
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem; /* 减小字体大小 */
+            transition: all 0.3s;
+            font-weight: bold;
+            border: 1px solid var(--border-dark);
         }
-        .announce-card{
-            background:#fff;
-            border-radius:12px;
-            overflow:hidden;
-            box-shadow:0 3px 8px rgba(0,0,0,0.08);
-            transition:transform .3s;
-            text-decoration:none;
-            color:inherit;
-            padding:1.2rem;
-            border-left:4px solid var(--c);
-        }
-        .announce-card:hover{
-            transform:translateY(-5px);
+        .view-more-btn:hover {
+            background: #8a0e16;
+            transform: translateY(-2px); /* 减小上移距离 */
+            box-shadow: 0 3px 10px rgba(163, 17, 27, 0.3); /* 减小阴影 */
         }
 
-        /* 页脚 */
-        .footer{
-            background:var(--c);
-            color:var(--l);  /* 浅白色文字 */
-            padding:2rem 1rem;
-            margin-top:4rem;
+        /* 鹊合公告 - 移动端优化 */
+        .announcement {
+            max-width: 1400px;
+            margin: 3rem auto; /* 减小外边距 */
+            padding: 0 1rem;
         }
-        .footer-container{
-            max-width:1400px;
-            margin:0 auto;
-            display:flex;
-            flex-wrap:wrap;
-            gap:2rem;
+        .grid {
+            display: grid;
+            gap: 1.2rem; /* 减小间距 */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         }
-        .footer-section{
-            flex:1;
-            min-width:300px;
-            font-size:0.9em;
+        .announce-card {
+            background: #fff;
+            border-radius: 10px; /* 减小圆角 */
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08); /* 减小阴影 */
+            transition: all .3s;
+            text-decoration: none;
+            color: inherit;
+            padding: 1.5rem; /* 减小内边距 */
+            border-left: 4px solid var(--c); /* 减小边框 */
+            display: flex;
+            flex-direction: column;
         }
-        .footer-links{
-            display:grid;
-            grid-template-columns:repeat(2,1fr);
-            gap:0.8rem;
-            list-style:none;
-            padding:0;
+        .announce-card:hover {
+            transform: translateY(-5px); /* 减小上移距离 */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* 减小阴影 */
         }
-        .footer-link{
-            color:var(--l);
-            text-decoration:none;
-            padding:0.2rem 0;
+        .announce-card h3 {
+            font-size: 1.3rem; /* 减小字体大小 */
+            margin-bottom: 0.8rem; /* 减小间距 */
+            color: #222;
+        }
+        .announce-card p {
+            color: #555;
+            font-size: 1rem; /* 减小字体大小 */
+            line-height: 1.6; /* 减小行高 */
+            flex-grow: 1;
+        }
+        .announce-card .date {
+            color: #888;
+            font-size: 0.85rem; /* 减小字体大小 */
+            margin-top: 0.8rem; /* 减小间距 */
         }
 
-        /* 移动端适配 */
-        @media (max-width:768px){
-            body{
-                padding-top:52px;
+        /* 页脚 - 移动端优化 */
+        .footer {
+            background: var(--c);
+            color: var(--l);
+            padding: 3rem 1rem; /* 减小内边距 */
+            margin-top: 3rem; /* 减小间距 */
+            border-top: 2px solid var(--border-dark); /* 减小边框 */
+        }
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem; /* 减小间距 */
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 280px; /* 减小最小宽度 */
+        }
+        .footer-section h3 {
+            font-size: 1.3rem; /* 减小字体大小 */
+            margin-bottom: 1.2rem; /* 减小间距 */
+            position: relative;
+            padding-bottom: 0.6rem; /* 减小间距 */
+        }
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px; /* 减小宽度 */
+            height: 2px; /* 减小高度 */
+            background: rgba(255,255,255,0.7);
+        }
+        .footer-section p {
+            margin-bottom: 0.6rem; /* 减小间距 */
+            font-size: 1rem; /* 减小字体大小 */
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem; /* 减小间距 */
+            padding: 0;
+        }
+        .footer-link {
+            color: var(--l);
+            text-decoration: none;
+            padding: 0.3rem 0; /* 减小内边距 */
+            font-size: 1rem; /* 减小字体大小 */
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        .footer-link:hover {
+            padding-left: 6px; /* 减小移动距离 */
+        }
+        .footer-link::before {
+            content: '›';
+            margin-right: 6px; /* 减小间距 */
+            font-weight: bold;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem; /* 减小内边距 */
+            margin-top: 1.5rem; /* 减小间距 */
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem; /* 减小字体大小 */
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* 移动端适配 - 优化版 */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 56px; /* 减小顶部间距 */
             }
-            .menu-btn{
-                display:block;
-                background:transparent;
-                border:none;
-                color:var(--l);
-                font-size:1.8rem;
-                cursor:pointer;
-                border:1px solid var(--border-color);  /* 深色边框 */
+            .nav {
+                padding: 0.6rem; /* 减小内边距 */
+                height: 56px; /* 减小高度 */
             }
-            .nav-links{
-                position:fixed;
-                top:52px;
-                right:1rem;
-                background:var(--c);
-                flex-direction:column;
-                width:180px;
-                max-height:0;
-                overflow:hidden;
-                transition:max-height .3s;
-                border-radius:8px;
-                border:2px solid var(--border-color);  /* 深色边框 */
-                padding:0;
+            .logo {
+                height: 32px; /* 减小尺寸 */
+                left: 0.8rem; /* 调整位置 */
             }
-            .nav-links.active{
-                max-height:320px;
-                padding:1rem 0;
+            .menu-btn {
+                font-size: 1.3rem; /* 减小字体大小 */
+                width: 32px; /* 减小尺寸 */
+                height: 32px; /* 减小尺寸 */
+                right: 0.8rem; /* 调整位置 */
             }
-            .carousel-item img{
-                height:30vh;  /* 移动端高度 */
+            .nav-links {
+                top: 56px; /* 调整位置 */
+                right: 0.8rem; /* 调整位置 */
+                width: 180px; /* 减小宽度 */
+                border-radius: 8px; /* 减小圆角 */
             }
-            .news-card{
-                flex:0 0 100%;
+            .nav-link {
+                padding: 0.3rem 0.6rem; /* 减小内边距 */
+                font-size: 0.95rem; /* 减小字体大小 */
             }
-            .announce-card{
-                height:auto;
+            
+            .carousel-item img {
+                height: 30vh; /* 减小高度 */
             }
-            .footer-container{
-                flex-direction:column;
+            .carousel-caption {
+                padding: 0.8rem; /* 减小内边距 */
             }
-            .more-btn{
-                padding:0.4rem 1rem;
-                font-size:0.8rem;
+            .carousel-caption h3 {
+                font-size: 1.2rem; /* 减小字体大小 */
+            }
+            .carousel-caption p {
+                font-size: 0.9rem; /* 减小字体大小 */
+            }
+            
+            .section-header {
+                margin-bottom: 0.8rem; /* 减小间距 */
+            }
+            .section-header h1 {
+                font-size: 1.5rem; /* 减小字体大小 */
+            }
+            .section-header h1::after {
+                width: 40px; /* 减小宽度 */
+                height: 2px; /* 减小高度 */
+            }
+            .more-btn {
+                padding: 0.4rem 1rem; /* 减小内边距 */
+                font-size: 0.85rem; /* 减小字体大小 */
+            }
+            
+            .news {
+                margin: 1.5rem auto; /* 减小外边距 */
+            }
+            .news-card {
+                flex: 0 0 85%; /* 调整宽度 */
+            }
+            .news-img {
+                height: 140px; /* 减小高度 */
+            }
+            .news-content {
+                padding: 0.8rem; /* 减小内边距 */
+            }
+            .news-content h3 {
+                font-size: 1.1rem; /* 减小字体大小 */
+            }
+            .news-content p {
+                font-size: 0.9rem; /* 减小字体大小 */
+            }
+            .view-more-btn {
+                padding: 0.7rem 1.8rem; /* 减小内边距 */
+                font-size: 0.95rem; /* 减小字体大小 */
+            }
+            
+            .announcement {
+                margin: 2rem auto; /* 减小外边距 */
+            }
+            .grid {
+                gap: 1rem; /* 减小间距 */
+                grid-template-columns: 1fr; /* 单列布局 */
+            }
+            .announce-card {
+                padding: 1.2rem; /* 减小内边距 */
+            }
+            .announce-card h3 {
+                font-size: 1.1rem; /* 减小字体大小 */
+            }
+            .announce-card p {
+                font-size: 0.95rem; /* 减小字体大小 */
+            }
+            
+            .footer {
+                padding: 2rem 1rem; /* 减小内边距 */
+            }
+            .footer-section h3 {
+                font-size: 1.1rem; /* 减小字体大小 */
+            }
+            .footer-section p {
+                font-size: 0.95rem; /* 减小字体大小 */
+            }
+            .footer-link {
+                font-size: 0.95rem; /* 减小字体大小 */
+            }
+            .copyright {
+                padding-top: 1rem; /* 减小内边距 */
+                margin-top: 1rem; /* 减小间距 */
+                font-size: 0.85rem; /* 减小字体大小 */
+            }
+        }
+        
+        /* 超小屏幕优化 */
+        @media (max-width: 480px) {
+            .nav-links {
+                width: 160px; /* 进一步减小宽度 */
+            }
+            .carousel-item img {
+                height: 25vh; /* 进一步减小高度 */
+            }
+            .news-card {
+                flex: 0 0 90%; /* 调整宽度 */
+            }
+            .news-img {
+                height: 120px; /* 进一步减小高度 */
+            }
+            .section-header h1 {
+                font-size: 1.3rem; /* 进一步减小字体大小 */
+            }
+            .more-btn {
+                padding: 0.3rem 0.8rem; /* 进一步减小内边距 */
+            }
+            .view-more-btn {
+                padding: 0.6rem 1.5rem; /* 进一步减小内边距 */
             }
         }
     </style>
@@ -299,12 +525,12 @@
 <body>
     <nav class="nav">
         <a href="#"><img src="logo.png" alt="校徽" class="logo"></a>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#" class="nav-link">首页</a></li>
-            <li><a href="news.html" class="nav-link">校园新闻</a></li>
-            <li><a href="qsc.html" class="nav-link">鹊合组织</a></li>
-            <li><a href="notice.html" class="nav-link">鹊合公告</a></li>
-        </ul>
+        <div class="nav-links" id="navLinks">
+            <a href="#" class="nav-link">首页</a>
+            <a href="news.html" class="nav-link">校园新闻</a>
+            <a href="qsc.html" class="nav-link">鹊合组织</a>
+            <a href="notice.html" class="nav-link">鹊合公告</a>
+        </div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
     </nav>
 
@@ -335,7 +561,7 @@
     </div>
 
     <main>
-        <!-- 校园新闻 -->
+        <!-- 校园新闻 - 横向滑动 -->
         <section class="news">
             <div class="section-header">
                 <h1>校园新闻</h1>
@@ -383,7 +609,7 @@
             </div>
         </section>
 
-        <!-- 鹊合公告 -->
+        <!-- 鹊合公告 - 无图片简化版 -->
         <section class="announcement">
             <div class="section-header">
                 <h1>鹊合公告</h1>
@@ -423,17 +649,21 @@
                 </div>
             </div>
         </div>
+        <div class="copyright">
+            © 2025 鹊华学生合作组织 | 版权所有
+        </div>
     </footer>
 
     <script>
         // 菜单切换
+        const nav = document.getElementById('navLinks');
+        const btn = document.querySelector('.menu-btn');
         const toggleMenu = () => {
-            document.getElementById('navLinks').classList.toggle('active');
+            nav.classList.toggle('active');
+            btn.textContent = nav.classList.contains('active') ? '×' : '☰';
         }
         document.addEventListener('click', e => {
-            if (!e.target.closest('.nav') && document.getElementById('navLinks').classList.contains('active')) {
-                toggleMenu();
-            }
+            if (!e.target.closest('.nav') && nav.classList.contains('active')) toggleMenu();
         });
 
         // 自动轮播
@@ -449,8 +679,27 @@
         setInterval(nextSlide, 5000);
 
         // 渐进式图片加载
-        document.querySelectorAll('img').forEach(img => {
-            img.onload = () => img.classList.add('loaded');
+        function initProgressiveImages() {
+            const images = document.querySelectorAll('img');
+            
+            images.forEach(img => {
+                if (img.complete) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', function() {
+                        this.classList.add('loaded');
+                    });
+                    
+                    img.addEventListener('error', function() {
+                        console.error('图片加载失败:', this.src);
+                    });
+                }
+            });
+        }
+        
+        // 初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            initProgressiveImages();
         });
     </script>
 </body>
