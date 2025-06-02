@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>鹊华学生合作组织</title>
-    <!-- 添加Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -12,12 +11,11 @@
             --l: rgba(255,255,255,0.9);
         }
         
-        /* 精简全局样式 */
         * {
             margin: 0;
             box-sizing: border-box;
             font-family: -apple-system, sans-serif;
-            -webkit-tap-highlight-color: transparent; /* 关闭触摸高亮 */
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
@@ -27,7 +25,7 @@
             background: #f8f9fa;
         }
 
-        /* 导航栏优化 */
+        /* 导航栏 */
         .nav {
             background: var(--c);
             padding: 1rem;
@@ -85,7 +83,7 @@
             border: none;
         }
 
-        /* 轮播图优化 */
+        /* 轮播图 */
         .carousel {
             margin: 1.5rem auto;
             max-width: 1400px;
@@ -130,7 +128,6 @@
         .carousel-caption h3 {
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
         .carousel-indicators {
             position: absolute;
@@ -154,13 +151,15 @@
             transform: scale(1.2);
         }
 
-        /* 板块标题优化 */
+        /* 板块标题 */
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
             padding: 0 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto 1.5rem;
         }
         .section-header h1 {
             font-size: 2.2rem;
@@ -196,7 +195,7 @@
             transform: translateY(-2px);
         }
 
-        /* 校园新闻优化 */
+        /* 校园新闻 */
         .news {
             max-width: 1400px;
             margin: 3rem auto;
@@ -265,7 +264,7 @@
             color: var(--c);
         }
         
-        /* 鹊合公告优化 */
+        /* 鹊合公告 */
         .announcement {
             max-width: 1400px;
             margin: 4rem auto;
@@ -306,19 +305,18 @@
             color: var(--c);
         }
 
-        /* 新增：使命宣言区域 */
+        /* 使命宣言 */
         .mission {
             background-color: var(--c);
             color: white;
             text-align: center;
             padding: 4rem 2rem;
-            margin: 4rem 0;
-            border-radius: 12px; /* 添加圆角 */
-            max-width: 1400px;
-            margin: 3rem auto;  /* 添加水平居中 */
+            margin: 4rem auto;
+            border-radius: 12px;
+            max-width: 1000px;
         }
         .mission-content {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
         .mission-content h2 {
@@ -344,40 +342,8 @@
             max-width: 700px;
             margin: 0 auto;
         }
-        .mission-icons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        .mission-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 180px;
-        }
-        .mission-icon i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: white;
-            background: rgba(255,255,255,0.2);
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s;
-        }
-        .mission-icon:hover i {
-            transform: scale(1.1);
-        }
-        .mission-icon span {
-            font-weight: 500;
-        }
 
-        /* 页脚优化 */
+        /* 页脚 */
         .footer {
             background: var(--c);
             color: var(--l);
@@ -440,8 +406,8 @@
                 padding-top: 65px;
             }
             .nav {
-                height: 65px;
                 padding: 0.8rem;
+                height: 65px;
             }
             .logo {
                 height: 36px;
@@ -457,6 +423,7 @@
                 position: fixed;
                 background: var(--c);
                 flex-direction: column;
+                border-radius: 8px;
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height .3s;
@@ -474,6 +441,7 @@
             
             .section-header {
                 margin-bottom: 1rem;
+                padding: 0 1rem;
             }
             .section-header h1 {
                 font-size: 1.8rem;
@@ -512,7 +480,6 @@
     <nav class="nav">
         <a href="#"><img src="images/logo.png" alt="校徽" class="logo"></a>
         <div class="nav-links" id="navLinks">
-            <!-- 添加导航图标 -->
             <a href="#" class="nav-link"><i class="fas fa-home"></i>首页</a>
             <a href="news/index.html" class="nav-link"><i class="fas fa-newspaper"></i>校园新闻</a>
             <a href="qsc/index.html" class="nav-link"><i class="fas fa-users"></i>鹊合组织</a>
@@ -552,7 +519,7 @@
         <!-- 校园新闻 -->
         <section class="news">
             <div class="section-header">
-                <h1>校园新闻</h1>
+                <i class="fas fa-newspaper"><h1>校园新闻</h1>
                 <button class="more-btn" onclick="location.href='news/index.html'">
                     <i class="fas fa-arrow-right"></i>查看更多
                 </button>
@@ -600,7 +567,7 @@
         <!-- 鹊合公告 -->
         <section class="announcement">
             <div class="section-header">
-                <h1>鹊合公告</h1>
+                <i class="fas fa-bullhorn"><h1>鹊合公告</h1>
                 <button class="more-btn" onclick="location.href='notice/index.html'">
                     <i class="fas fa-arrow-right"></i>查看更多
                 </button>
@@ -621,13 +588,12 @@
             </div>
         </section>
         
-        <!-- 新增：使命板块 -->
+        <!-- 使命板块 -->
         <section class="mission">
             <div class="mission-content">
                 <h2>我们的使命</h2>
-                <p>鹊华学生合作组织致力于搭建学生与学校间的沟通桥梁，促进校园文化建设与学生全面发展。<br>
+                <p>鹊华学生合作组织致力于搭建学生与学校间的沟通桥梁，促进校园文化建设与学生全面发展。
                 我们以学生为中心，服务为宗旨，创新为动力，努力打造一个充满活力、互帮互助的学习共同体。</p>
-                </div>
             </div>
         </section>
     </main>
@@ -665,17 +631,17 @@
             nav.classList.toggle('active');
             btn.textContent = nav.classList.contains('active') ? '×' : '☰';
         }
+        
         document.addEventListener('click', e => {
             if (!e.target.closest('.nav') && nav.classList.contains('active')) toggleMenu();
         });
 
-        // 自动轮播
+        // 轮播图
         let currentSlide = 0;
         const carousel = document.querySelector('.carousel-inner');
         const slides = document.querySelectorAll('.carousel-item');
         const indicatorsContainer = document.getElementById('carouselIndicators');
         
-        // 创建轮播指示器
         slides.forEach((slide, index) => {
             const indicator = document.createElement('div');
             indicator.classList.add('carousel-indicator');
@@ -690,13 +656,8 @@
         function updateCarousel() {
             carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
             
-            // 更新指示器状态
             document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
-                if (index === currentSlide) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
+                indicator.classList.toggle('active', index === currentSlide);
             });
         }
         
@@ -707,11 +668,9 @@
         
         setInterval(nextSlide, 5000);
 
-        // 渐进式图片加载
-        function initProgressiveImages() {
-            const images = document.querySelectorAll('img');
-            
-            images.forEach(img => {
+        // 图片加载
+        function initImages() {
+            document.querySelectorAll('img').forEach(img => {
                 if (img.complete) {
                     img.classList.add('loaded');
                 } else {
@@ -722,8 +681,7 @@
             });
         }
         
-        // 初始化
-        window.addEventListener('DOMContentLoaded', initProgressiveImages);
+        window.addEventListener('DOMContentLoaded', initImages);
     </script>
 </body>
 </html>
