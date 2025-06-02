@@ -27,7 +27,7 @@
             background: #f8f9fa;
         }
 
-        /* 导航栏优化 - 精简 */
+        /* 导航栏优化 */
         .nav {
             background: var(--c);
             padding: 1rem;
@@ -85,7 +85,7 @@
             border: none;
         }
 
-        /* 轮播图优化 - 精简 */
+        /* 轮播图优化 */
         .carousel {
             margin: 1.5rem auto;
             max-width: 1400px;
@@ -154,7 +154,7 @@
             transform: scale(1.2);
         }
 
-        /* 板块标题优化 - 精简 */
+        /* 板块标题优化 */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -196,7 +196,7 @@
             transform: translateY(-2px);
         }
 
-        /* 校园新闻优化 - 精简并添加图标 */
+        /* 校园新闻优化 */
         .news {
             max-width: 1400px;
             margin: 3rem auto;
@@ -265,7 +265,7 @@
             color: var(--c);
         }
         
-        /* 鹊合公告优化 - 精简并添加图标 */
+        /* 鹊合公告优化 */
         .announcement {
             max-width: 1400px;
             margin: 4rem auto;
@@ -313,6 +313,9 @@
             text-align: center;
             padding: 4rem 2rem;
             margin: 4rem 0;
+            border-radius: 12px; /* 添加圆角 */
+            max-width: 1400px;
+            margin: 3rem auto;  /* 添加水平居中 */
         }
         .mission-content {
             max-width: 900px;
@@ -341,8 +344,40 @@
             max-width: 700px;
             margin: 0 auto;
         }
+        .mission-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .mission-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 180px;
+        }
+        .mission-icon i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            background: rgba(255,255,255,0.2);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        .mission-icon:hover i {
+            transform: scale(1.1);
+        }
+        .mission-icon span {
+            font-weight: 500;
+        }
 
-        /* 页脚优化 - 精简并添加图标 */
+        /* 页脚优化 */
         .footer {
             background: var(--c);
             color: var(--l);
@@ -396,7 +431,7 @@
             padding-left: 8px;
         }
 
-        /* 移动端适配 - 精简 */
+        /* 移动端适配 */
         @media (max-width: 768px) {
             html {
                 font-size: 14px;
@@ -457,7 +492,8 @@
             
             .mission {
                 padding: 3rem 1.5rem;
-                margin: 3rem 0;
+                margin: 3rem 1rem;
+                border-radius: 8px;
             }
             .mission-content h2 {
                 font-size: 1.9rem;
@@ -591,6 +627,7 @@
                 <h2>我们的使命</h2>
                 <p>鹊华学生合作组织致力于搭建学生与学校间的沟通桥梁，促进校园文化建设与学生全面发展。<br>
                 我们以学生为中心，服务为宗旨，创新为动力，努力打造一个充满活力、互帮互助的学习共同体。</p>
+                </div>
             </div>
         </section>
     </main>
@@ -613,7 +650,7 @@
                         <i class="fas fa-map-marker-alt"></i>校区地图
                     </a>
                     <a href="qsc/eng.html" class="footer-link">
-                        <i class="fas fa-file-alt"></i>English Page
+                        <i class="fas fa-bookmark"></i>占位
                     </a>
                 </div>
             </div>
