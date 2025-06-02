@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>鹊华学生合作组织</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --c: #a3111b;
             --l: rgba(255,255,255,0.9);
         }
+        
         * {
             margin: 0;
             box-sizing: border-box;
             font-family: -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
+        
         body {
             line-height: 1.6;
             color: #333;
             padding-top: 70px;
             background: #f8f9fa;
         }
-        
-        /* 导航栏优化 */
+
+        /* 导航栏 */
         .nav {
             background: var(--c);
             padding: 1rem;
@@ -57,6 +61,9 @@
             transition: all 0.3s ease;
             border-radius: 4px;
             font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .nav-link:hover {
             background: rgba(255,255,255,0.2);
@@ -76,7 +83,7 @@
             border: none;
         }
 
-        /* 轮播图优化 */
+        /* 轮播图 */
         .carousel {
             margin: 1.5rem auto;
             max-width: 1400px;
@@ -121,11 +128,6 @@
         .carousel-caption h3 {
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
-        .carousel-caption p {
-            font-size: 1.2rem;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
         .carousel-indicators {
             position: absolute;
@@ -149,13 +151,15 @@
             transform: scale(1.2);
         }
 
-        /* 板块标题优化 */
+        /* 板块标题 */
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
             padding: 0 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto 1.5rem;
         }
         .section-header h1 {
             font-size: 2.2rem;
@@ -182,13 +186,16 @@
             font-size: 1.1rem;
             transition: all 0.3s;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .more-btn:hover {
             background: #8a0e16;
             transform: translateY(-2px);
         }
 
-        /* 校园新闻优化 */
+        /* 校园新闻 */
         .news {
             max-width: 1400px;
             margin: 3rem auto;
@@ -242,9 +249,6 @@
             filter: blur(0);
             opacity: 1;
         }
-        .news-card:hover .news-img img {
-            transform: scale(1.05);
-        }
         .news-content {
             padding: 1.5rem;
         }
@@ -252,14 +256,15 @@
             font-size: 1.4rem;
             margin-bottom: 0.8rem;
             color: #222;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .news-content p {
-            color: #555;
-            font-size: 1.1rem;
-            line-height: 1.7;
+        .news-content h3 i {
+            color: var(--c);
         }
-
-        /* 鹊合公告优化 */
+        
+        /* 鹊合公告 */
         .announcement {
             max-width: 1400px;
             margin: 4rem auto;
@@ -292,20 +297,53 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: #222;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .announce-card p {
-            color: #555;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            flex-grow: 1;
-        }
-        .announce-card .date {
-            color: #888;
-            font-size: 0.9rem;
-            margin-top: 1rem;
+        .announce-card h3 i {
+            color: var(--c);
         }
 
-        /* 页脚优化 */
+        /* 使命宣言 */
+        .mission {
+            background-color: var(--c);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin: 4rem auto;
+            border-radius: 12px;
+            max-width: 1000px;
+        }
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .mission-content h2 {
+            font-size: 2.3rem;
+            margin-bottom: 1.8rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        .mission-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: white;
+        }
+        .mission-content p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* 页脚 */
         .footer {
             background: var(--c);
             color: var(--l);
@@ -339,10 +377,6 @@
             height: 3px;
             background: rgba(255,255,255,0.7);
         }
-        .footer-section p {
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
-        }
         .footer-links {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -357,14 +391,10 @@
             transition: all 0.3s;
             display: flex;
             align-items: center;
+            gap: 8px;
         }
         .footer-link:hover {
             padding-left: 8px;
-        }
-        .footer-link::before {
-            content: '›';
-            margin-right: 8px;
-            font-weight: bold;
         }
 
         /* 移动端适配 */
@@ -385,16 +415,15 @@
             }
             .menu-btn {
                 display: flex;
-                right: 1rem;
             }
             .nav-links {
                 top: 65px;
                 right: 1rem;
                 width: 200px;
-                border-radius: 8px;
                 position: fixed;
                 background: var(--c);
                 flex-direction: column;
+                border-radius: 8px;
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height .3s;
@@ -405,22 +434,9 @@
                 max-height: 320px;
                 padding: 1rem 0;
             }
-            .nav-link {
-                padding: 0.5rem 1rem;
-                font-size: 1.1rem;
-            }
             
             .carousel-item img {
                 height: 35vh;
-            }
-            .carousel-caption {
-                padding: 1rem;
-            }
-            .carousel-caption h3 {
-                font-size: 1.4rem;
-            }
-            .carousel-caption p {
-                font-size: 1rem;
             }
             
             .section-header {
@@ -430,62 +446,32 @@
             .section-header h1 {
                 font-size: 1.8rem;
             }
-            .section-header h1::after {
-                width: 50px;
-                height: 3px;
-            }
-            .more-btn {
-                padding: 0.6rem 1.5rem;
-                font-size: 1rem;
-            }
             
-            .news {
-                margin: 2rem auto;
-            }
             .news-card {
                 flex: 0 0 85%;
             }
             .news-img {
                 height: 160px;
             }
-            .news-content {
-                padding: 1.2rem;
-            }
-            .news-content h3 {
-                font-size: 1.2rem;
-            }
-            .news-content p {
-                font-size: 1rem;
-            }
             
-            .announcement {
-                margin: 3rem auto;
-            }
             .grid {
-                gap: 1.2rem;
                 grid-template-columns: 1fr;
             }
-            .announce-card {
-                padding: 1.5rem;
+            
+            .mission {
+                padding: 3rem 1.5rem;
+                margin: 3rem 1rem;
+                border-radius: 8px;
             }
-            .announce-card h3 {
-                font-size: 1.3rem;
+            .mission-content h2 {
+                font-size: 1.9rem;
             }
-            .announce-card p {
-                font-size: 1rem;
+            .mission-content p {
+                font-size: 1.1rem;
             }
             
             .footer {
                 padding: 3rem 1rem;
-            }
-            .footer-section h3 {
-                font-size: 1.3rem;
-            }
-            .footer-section p {
-                font-size: 1rem;
-            }
-            .footer-link {
-                font-size: 1rem;
             }
         }
     </style>
@@ -494,10 +480,10 @@
     <nav class="nav">
         <a href="#"><img src="images/logo.png" alt="校徽" class="logo"></a>
         <div class="nav-links" id="navLinks">
-            <a href="#" class="nav-link">首页</a>
-            <a href="news/index.html" class="nav-link">校园新闻</a>
-            <a href="qsc/index.html" class="nav-link">鹊合组织</a>
-            <a href="notice/index.html" class="nav-link">鹊合公告</a>
+            <a href="#" class="nav-link"><i class="fas fa-home"></i>首页</a>
+            <a href="news/index.html" class="nav-link"><i class="fas fa-newspaper"></i>校园新闻</a>
+            <a href="qsc/index.html" class="nav-link"><i class="fas fa-users"></i>鹊合组织</a>
+            <a href="notice/index.html" class="nav-link"><i class="fas fa-bullhorn"></i>鹊合公告</a>
         </div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
     </nav>
@@ -534,7 +520,9 @@
         <section class="news">
             <div class="section-header">
                 <h1>校园新闻</h1>
-                <button class="more-btn" onclick="location.href='news/index.html'">查看更多→</button>
+                <button class="more-btn" onclick="location.href='news/index.html'">
+                    <i class="fas fa-arrow-right"></i>查看更多
+                </button>
             </div>
             <div class="horizontal-scroll">
                 <a href="news/guanzhidaoju.html" class="news-card">
@@ -542,7 +530,7 @@
                         <img src="images/guanzhidaoju.jpg" alt="管制刀具" loading="lazy">
                     </div>
                     <div class="news-content">
-                        <h3>管制刀具</h3>
+                        <h3><i class="fas fa-ban"></i>管制刀具</h3>
                         <p>山东省实验中学关于禁止携带刀具进入校园的通告</p>
                     </div>
                 </a>
@@ -551,7 +539,7 @@
                         <img src="images/xueshenghui.jpg" alt="学生会" loading="lazy">
                     </div>
                     <div class="news-content">
-                        <h3>学生会换届名单出炉</h3>
+                        <h3><i class="fas fa-user-graduate"></i>学生会换届名单出炉</h3>
                         <p>2025年5月学生会换届结果出炉...</p>
                     </div>
                 </a>
@@ -560,8 +548,8 @@
                         <img src="images/kaifangri.jpg" alt="开放日" loading="lazy">
                     </div>
                     <div class="news-content">
-                        <h3>鹊华校区开放日</h3>
-                        <p>鹊华校区于7月1日组织校园开放日活动...</p>
+                        <h3><i class="fas fa-door-open"></i>鹊华校区开放日</h3>
+                        <p>鹊华校区校园开放日活动...</p>
                     </div>
                 </a>
                 <a href="news/xinshengzhinan.html" class="news-card">
@@ -569,7 +557,7 @@
                         <img src="images/ruxuezhinan.jpg" alt="新生入学指南" loading="lazy">
                     </div>
                     <div class="news-content">
-                        <h3>高一新生入学指南</h3>
+                        <h3><i class="fas fa-map-signs"></i>高一新生入学指南</h3>
                         <p>恭喜你成为省实验中学鹊华校区的一员...</p>
                     </div>
                 </a>
@@ -580,21 +568,32 @@
         <section class="announcement">
             <div class="section-header">
                 <h1>鹊合公告</h1>
-                <button class="more-btn" onclick="location.href='notice/index.html'">查看更多→</button>
+                <button class="more-btn" onclick="location.href='notice/index.html'">
+                    <i class="fas fa-arrow-right"></i>查看更多
+                </button>
             </div>
             <div class="grid">
                 <a href="qsc/introduction.html" class="announce-card">
-                    <h3>鹊华学生合作组织介绍</h3>
+                    <h3><i class="fas fa-info-circle"></i>鹊华学生合作组织介绍</h3>
                     <p>本组织建立于2024年10月...</p>
                 </a>
                 <a href="qsc/jiaoshixin.html" class="announce-card">
-                    <h3>致鹊华校区全体教师的一封信</h3>
+                    <h3><i class="fas fa-envelope-open-text"></i>致鹊华校区全体教师的一封信</h3>
                     <p>老师好！</p>
                 </a>
                 <a href="qsc/xinchengyuan.html" class="announce-card">
-                    <h3>新成员招募</h3>
+                    <h3><i class="fas fa-user-plus"></i>新成员招募</h3>
                     <p>鹊合组织开放新成员申请通道...</p>
                 </a>
+            </div>
+        </section>
+        
+        <!-- 使命板块 -->
+        <section class="mission">
+            <div class="mission-content">
+                <h2>我们的使命</h2>
+                <p>鹊华学生合作组织致力于搭建学生与学校间的沟通桥梁，促进校园文化建设与学生全面发展。
+                我们以学生为中心，服务为宗旨，创新为动力，努力打造一个充满活力、互帮互助的学习共同体。</p>
             </div>
         </section>
     </main>
@@ -603,16 +602,22 @@
         <div class="footer-container">
             <div class="footer-section">
                 <h3>联系我们</h3>
-                <p>总部：2024级36、37班</p>
-                <p>官Q：3583268240</p>
-                <p>邮箱：3583268240@qq.com</p>
+                <p><i class="fas fa-building"></i> 总部：2024级36、37班</p>
+                <p><i class="fab fa-qq"></i> 官Q：3583268240</p>
+                <p><i class="fas fa-envelope"></i> 邮箱：3583268240@qq.com</p>
             </div>
             <div class="footer-section">
                 <h3>快速链接</h3>
                 <div class="footer-links">
-                    <a href="http://sdshiyan.jinan-edu.cn" class="footer-link">省实验官网</a>
-                    <a href="images/map.html" class="footer-link">校区地图</a>
-                    <a href="qsc/eng.html" class="footer-link">占位</a>
+                    <a href="http://sdshiyan.jinan-edu.cn" class="footer-link">
+                        <i class="fas fa-globe"></i>省实验官网
+                    </a>
+                    <a href="images/map.html" class="footer-link">
+                        <i class="fas fa-map-marker-alt"></i>校区地图
+                    </a>
+                    <a href="qsc/eng.html" class="footer-link">
+                        <i class="fas fa-bookmark"></i>占位
+                    </a>
                 </div>
             </div>
         </div>
@@ -626,17 +631,17 @@
             nav.classList.toggle('active');
             btn.textContent = nav.classList.contains('active') ? '×' : '☰';
         }
+        
         document.addEventListener('click', e => {
             if (!e.target.closest('.nav') && nav.classList.contains('active')) toggleMenu();
         });
 
-        // 自动轮播
+        // 轮播图
         let currentSlide = 0;
         const carousel = document.querySelector('.carousel-inner');
         const slides = document.querySelectorAll('.carousel-item');
         const indicatorsContainer = document.getElementById('carouselIndicators');
         
-        // 创建轮播指示器
         slides.forEach((slide, index) => {
             const indicator = document.createElement('div');
             indicator.classList.add('carousel-indicator');
@@ -651,13 +656,8 @@
         function updateCarousel() {
             carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
             
-            // 更新指示器状态
             document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
-                if (index === currentSlide) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
+                indicator.classList.toggle('active', index === currentSlide);
             });
         }
         
@@ -668,29 +668,20 @@
         
         setInterval(nextSlide, 5000);
 
-        // 渐进式图片加载
-        function initProgressiveImages() {
-            const images = document.querySelectorAll('img');
-            
-            images.forEach(img => {
+        // 图片加载
+        function initImages() {
+            document.querySelectorAll('img').forEach(img => {
                 if (img.complete) {
                     img.classList.add('loaded');
                 } else {
                     img.addEventListener('load', function() {
                         this.classList.add('loaded');
                     });
-                    
-                    img.addEventListener('error', function() {
-                        console.error('图片加载失败:', this.src);
-                    });
                 }
             });
         }
         
-        // 初始化
-        window.addEventListener('DOMContentLoaded', () => {
-            initProgressiveImages();
-        });
+        window.addEventListener('DOMContentLoaded', initImages);
     </script>
 </body>
 </html>
