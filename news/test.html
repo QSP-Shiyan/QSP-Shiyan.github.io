@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面标题 - 山东省实验中学鹊华校区</title>
+    <!-- 引入公共样式 -->
+    <link rel="stylesheet" href="../template.css">
+</head>
+<body>
+    <!-- 引入页头模板 -->
+    <div id="header-container"></div>
+
+    <!-- 页面主体内容 -->
+    <main>
+        <div class="article-container">        
+            <div class="article-content">
+                <!-- 这里放置当前页面独有的内容 -->
+                <p>页面正文内容...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- 引入页尾模板 -->
+    <div id="footer-container"></div>
+
+    <!-- 加载模板脚本 -->
+    <script>
+        // 加载页头
+        fetch('../header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+            });
+
+        // 加载页尾
+        fetch('../footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+            });
+    </script>
+</body>
+</html>
