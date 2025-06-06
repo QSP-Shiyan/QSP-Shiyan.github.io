@@ -47,16 +47,16 @@ body {
     margin: 0 auto;
     justify-content: center;
     flex-wrap: wrap;
-    position: absolute;
-    top: 100%; /* 位于导航栏正下方 */
+    position: absolute; /* 关键：相对于.nav定位 */
+    top: 100%; /* 严格位于导航栏正下方 */
     left: 0;
     right: 0;
     background: var(--c);
-    padding: 1rem 0;
-    max-height: 0; /* 初始隐藏 */
-    overflow-y: auto; /* 内容过多时滚动 */
+    padding: 0; /* 重置内边距 */
+    max-height: 0; /* 初始完全隐藏 */
+    overflow: hidden; /* 禁止内容溢出 */
     transition: max-height var(--t) ease-in-out;
-    z-index: 999; /* 确保在导航栏下方，但高于其他内容 */
+    z-index: 999; /* 确保在导航栏下方 */
 }
 
 .nav-link {
@@ -119,10 +119,11 @@ body {
     }
 
     .nav-links {
-        top: 65px; /* 位于移动端导航栏下方 */
-        right: 1rem;
-        width: 200px;
-        border-radius: 8px;
+        top: 100%; /* 严格位于移动端导航栏正下方 */
+        left: 0;
+        right: 0;
+        width: 100%; /* 占满屏幕宽度 */
+        border-radius: 0 0 8px 8px; /* 底部圆角 */
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
