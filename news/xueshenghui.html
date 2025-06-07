@@ -1,79 +1,131 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
+<style>
+    /* 新增表格样式 */
+    .student-union-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        font-size: 1rem;
+    }
+    .student-union-table th {
+        background-color: #f5f5f5;
+        padding: 10px;
+        text-align: left;
+        border-bottom: 2px solid #eee;
+    }
+    .student-union-table td {
+        padding: 12px 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .student-union-table tr:hover {
+        background-color: #fafafa;
+    }
+    /* 保持原有样式 */
+    .announcement-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        font-size: 1rem;
+    }
+    .announcement-title {
+        color: black;
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    .announcement-date {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+        color: #555;
+        font-size: 1rem;
+    }
+    .calendar-icon {
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+    .announcement-content p {
+        text-indent: 2em;
+        margin: 15px 0;
+        line-height: 1.8;
+    }
+    @media (max-width: 768px) {
         .announcement-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            font-size: 1rem;
+            padding: 15px;
         }
         .announcement-title {
-            color: black;
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        .announcement-date {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 30px;
-            color: #555;
-            font-size: 1rem;
+            font-size: 1.3rem;
         }
         .calendar-icon {
-            margin-right: 10px;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
-        .announcement-content p {
-            text-indent: 2em;
-            margin: 15px 0;
-            line-height: 1.8;
+        .student-union-table th, 
+        .student-union-table td {
+            padding: 8px 5px;
+            font-size: 0.9rem;
         }
-        @media (max-width: 768px) {
-            .announcement-container {
-                padding: 15px;
-            }
-            .announcement-title {
-                font-size: 1.3rem;
-            }
-            .calendar-icon {
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- 内容会被自动插入 -->
-    
-    <!-- 加载组件脚本 -->
-    <script src="/js/template.js"></script>
-    
-    <!-- 页面特定内容 -->
-    <main>
-            <div class="announcement-container">
-            <h2 class="announcement-title">标题</h2>
-            
-            <div class="announcement-date">
-                <i class="fas fa-calendar calendar-icon"></i>
-                <span>时间</span>
-            </div>
-            
-            <div class="announcement-content">
-            //正文内容
-            </div>
+    }
+</style>
+
+<main>
+    <div class="announcement-container">
+        <h2 class="announcement-title">标题</h2>
+        
+        <div class="announcement-date">
+            <i class="fas fa-calendar calendar-icon"></i>
+            <span>2025.06.06</span>
         </div>
-    </main>
-    
-    <!-- 页面特定脚本 -->
-    <script>
-        // 这里可以添加页面特定的JavaScript代码
-    </script>
-</body>
-</html>
+        
+        <div class="announcement-content">
+            <h3 style="margin-bottom: 15px; text-align: center;">学生会成员名单</h3>
+            <h2>2025年5月30日，山东省实验中学鹊华校区学生会换届选举结果出炉，以下为新一届学生会主席团成员职位表：</h2>
+            <table class="student-union-table">
+                <thead>
+                    <tr>
+                        <th>职务</th>
+                        <th>班级 姓名</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>学生会主席</td>
+                        <td>高一39班 赵子昊</td>
+                    </tr>
+                    <tr>
+                        <td>秘书长</td>
+                        <td>高一37班 吕梦轩</td>
+                    </tr>
+                    <tr>
+                        <td>副秘书长</td>
+                        <td>高一40班 袁雨桐</td>
+                    </tr>
+                    <tr>
+                        <td>文艺部部长</td>
+                        <td>高一35班 陈可妮</td>
+                    </tr>
+                    <tr>
+                        <td>体育部部长</td>
+                        <td>高一35班 张博闻</td>
+                    </tr>
+                    <tr>
+                        <td>生活部部长</td>
+                        <td>高一35班 杨润博</td>
+                    </tr>
+                    <tr>
+                        <td>学习部部长</td>
+                        <td>高一35班 公 帅</td>
+                    </tr>
+                    <tr>
+                        <td>自律部部长</td>
+                        <td>高一37班 王成贤</td>
+                    </tr>
+                    <tr>
+                        <td>卫生部部长</td>
+                        <td>高一35班 乌一凡</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>鹊华学生合作组织对新当选的学生会主席团成员致以最真诚的祝贺，同时祝福鹊华校区能够在新学生会的带领下繁荣发展！</h2>
+        </div>
+    </div>
+</main>
