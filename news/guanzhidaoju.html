@@ -3,468 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>禁止携带刀具进入校园的通告 - 山东省实验中学鹊华校区</title>
+    <title>禁止携带刀具进入校园的通告</title>
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --c: #a3111b;
-            --l: rgba(255,255,255,0.9);
-        }
-        
-        * {
-            margin: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        body {
-            line-height: 1.7;
-            color: #333;
-            padding-top: 70px;
-            background: #f8f9fa;
-        }
-        
-        /* 导航栏 */
-        .nav {
-            background: var(--c);
-            padding: 1rem;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            height: 70px;
-        }
-        .logo {
-            height: 42px;
-            position: absolute;
-            left: 1.5rem;
-            border-radius: 4px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .nav-links {
-            display: flex;
-            gap: 1.8rem;
-            list-style: none;
-            margin: 0 auto;
-        }
-        .nav-link {
-            color: var(--l);
-            text-decoration: none;
-            padding: .6rem 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .nav-link:hover {
-            background: rgba(255,255,255,0.2);
-        }
-        .menu-btn {
-            display: none;
-            background: transparent;
-            color: var(--l);
-            font-size: 1.8rem;
-            cursor: pointer;
-            position: absolute;
-            right: 1.5rem;
-            width: 40px;
-            height: 40px;
-            align-items: center;
-            justify-content: center;
-            border: none;
-        }
-        
-        /* 公告标题区域 */
-        .article-header {
-            background: linear-gradient(rgba(163,17,27,0.9), rgba(130,14,23,0.9)), 
-                        url('https://images.unsplash.com/photo-1560785496-3c9d27877182?auto=format&fit=crop&w=1500');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 4rem 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .article-header h1 {
-            font-size: 2.3rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .article-header .meta {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            font-size: 1.1rem;
-            margin-top: 1.5rem;
-            opacity: 0.9;
-        }
-        
-        .article-header .meta i {
-            margin-right: 8px;
-        }
-        
-        /* 公告内容 */
-        .article-container {
+        .announcement-container {
             max-width: 900px;
-            margin: 0 auto 4rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            padding: 3rem;
-            position: relative;
-        }
-        
-        .seal {
-            position: absolute;
-            right: 3rem;
-            top: -1rem;
-            opacity: 0.3;
-            font-size: 5rem;
-            color: var(--c);
-        }
-        
-        .article-content {
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-        
-        .article-content h2 {
-            color: var(--c);
-            margin: 2rem 0 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .article-content h3 {
-            font-size: 1.3rem;
-            margin: 1.5rem 0 1rem;
-            color: #444;
-        }
-        
-        .article-content ul {
-            padding-left: 2rem;
-            margin: 1.2rem 0;
-        }
-        
-        .article-content li {
-            margin-bottom: 0.8rem;
-            position: relative;
-        }
-        
-        .article-content li::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: var(--c);
-            border-radius: 50%;
-            position: absolute;
-            left: -1.5rem;
-            top: 0.65rem;
-        }
-        
-        .important-notice {
-            background: #fff9f9;
-            border-left: 4px solid var(--c);
-            padding: 1.5rem;
-            margin: 1.8rem 0;
-            border-radius: 0 4px 4px 0;
-        }
-        
-        .signature {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            text-align: right;
-            border-top: 1px dashed #ddd;
-        }
-        
-        .signature p {
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .signature .date {
-            font-style: italic;
-            opacity: 0.8;
-        }
-        
-        /* 页脚 */
-        .footer {
-            background: var(--c);
-            color: var(--l);
-            padding: 4rem 1rem;
-            border-top: 3px solid rgba(0,0,0,0.1);
-        }
-        
-        .footer-container {
-            max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
+            padding: 20px;
+            font-size: 1rem;
         }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .footer-section h3 {
+        .announcement-title {
+            color: black;
+            text-align: center;
             font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.8rem;
+            margin-bottom: 15px;
         }
-        
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: rgba(255,255,255,0.7);
-        }
-        
-        .footer-links {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            padding: 0;
-        }
-        
-        .footer-link {
-            color: var(--l);
-            text-decoration: none;
-            padding: 0.4rem 0;
-            font-size: 1.1rem;
-            transition: all 0.3s;
+        .announcement-date {
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 8px;
+            margin-bottom: 30px;
+            color: #555;
+            font-size: 1rem;
         }
-        
-        .footer-link:hover {
-            padding-left: 8px;
+        .calendar-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
-        
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin: 2rem auto;
-            background: var(--c);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: all 0.3s;
+        .announcement-content p {
+            text-indent: 2em;
+            margin: 15px 0;
+            line-height: 1.8;
         }
-        
-        .back-btn:hover {
-            background: #8a0e16;
-            transform: translateY(-2px);
-        }
-
-        /* 移动端适配 */
         @media (max-width: 768px) {
-            html {
-                font-size: 14px;
+            .announcement-container {
+                padding: 15px;
             }
-            
-            body {
-                padding-top: 65px;
+            .announcement-title {
+                font-size: 1.3rem;
             }
-            
-            .nav {
-                padding: 0.8rem;
-                height: 65px;
-            }
-            
-            .logo {
-                height: 36px;
-                left: 1rem;
-            }
-            
-            .menu-btn {
-                display: flex;
-            }
-            
-            .nav-links {
-                top: 65px;
-                right: 1rem;
-                width: 200px;
-                position: fixed;
-                background: var(--c);
-                flex-direction: column;
-                border-radius: 8px;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height .3s;
-                padding: 0;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            }
-            
-            .nav-links.active {
-                max-height: 320px;
-                padding: 1rem 0;
-            }
-            
-            .article-header {
-                padding: 3rem 1.2rem;
-            }
-            
-            .article-header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .article-container {
-                padding: 1.8rem;
-                margin: 0 1rem 3rem;
-            }
-            
-            .seal {
-                right: 1.5rem;
-                font-size: 4rem;
-            }
-            
-            .article-content {
+            .calendar-icon {
                 font-size: 1rem;
-            }
-            
-            .footer {
-                padding: 3rem 1rem;
-            }
-            
-            .article-header .meta {
-                flex-direction: column;
-                gap: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="nav">
-        <a href="../index.html"><img src="../images/logo.png" alt="校徽" class="logo"></a>
-        <div class="nav-links" id="navLinks">
-            <a href="../index.html" class="nav-link"><i class="fas fa-home"></i>首页</a>
-            <a href="index.html" class="nav-link"><i class="fas fa-newspaper"></i>校园新闻</a>
-            <a href="../qsc/index.html" class="nav-link"><i class="fas fa-users"></i>鹊合组织</a>
-            <a href="../notice/index.html" class="nav-link"><i class="fas fa-bullhorn"></i>鹊合公告</a>
-        </div>
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
-    </nav>
-
-    <!-- 公告头部区域 -->
-    <header class="article-header">
-        <h1>山东省实验中学关于禁止携带刀具进入校园的通告</h1>
-        <p>保障校园安全，守护师生生命安全</p>
-    </header>
-
-    <!-- 公告正文内容 -->
-    <div class="article-container">
-        <div class="seal"><i class="fas fa-stamp"></i></div>
-        
-        <div class="article-content">
-            <p>为进一步保护广大师生生命财产安全，维护学校及周边治安秩序，防范侵害师生权益的违法犯罪活动，在校园全面查禁管制刀具，根据《中华人民共和国治安管理处罚法》、公安部《对部分刀具实行管制的暂行规定》，特通告如下：</p>
-            
-            <h2>一、严禁携带以下刀具进入校园</h2>
-            
-            <h3>1. 管制刀具</h3>
-            <ul>
-                <li>匕首、三棱刀（包括机械加工用的三棱刮刀）、带有自锁装置的弹簧刀（跳刀）</li>
-                <li>其它相类似的单刃、双刃、三棱刀、藏刀、靴刀</li>
-                <li>无弹簧但有自锁装置的单刃、双刃刀</li>
-                <li>形似匕首但长度超过匕首的单刃、双刃刀（如仿"东洋武士刀"、西洋军刺等）</li>
-            </ul>
-            
-            <h3>2. 其他非学习所需刀具</h3>
-            <ul>
-                <li>任何非教学用途的刀具，包括各类工艺刀、装饰刀、刀具玩具等</li>
-                <li>任何可能被用作伤害他人的尖锐金属物品</li>
-            </ul>
-            
-            <h2>二、违禁刀具处理规定</h2>
-            <div class="important-notice">
-                <i class="fas fa-exclamation-circle" style="color:#a3111b; margin-right:8px;"></i>
-                凡非法持有、携带上述刀具的，要主动上交学校安全保卫部或学生发展部。
-            </div>
-            
-            <ul>
-                <li><strong>主动上交</strong>：对主动交出上述刀具的学生，不予处罚</li>
-                <li><strong>查出藏匿或使用</strong>：被查出藏匿或使用上述刀具的，学校按照相关规定从重处理直至开除学籍，同时送缴公安机关并根据相关法律法规处理</li>
-            </ul>
-            
-            <h2>三、责任部门</h2>
-            <p>学校安全保卫部、学生发展部具体负责管制刀具的检查、收缴工作。</p>
-            
-            <h2>四、处分规定</h2>
-            <h3>学校对携带管制刀具（含各类非学习所需刀具）等危险物品进入校园的处分规定：</h3>
-            
-            <div class="important-notice">
-                <i class="fas fa-ban" style="color:#a3111b; margin-right:8px;"></i>
-                首次违反处分规定：给予校级严重警告处分
-            </div>
-            
-            <div class="important-notice">
-                <i class="fas fa-user-slash" style="color:#a3111b; margin-right:8px;"></i>
-                再次违反处分规定：给予开除学籍处分
-            </div>
-            
-            <div class="important-notice">
-                <i class="fas fa-fire-extinguisher" style="color:#a3111b; margin-right:8px;"></i>
-                携带易燃易爆物品、化学药品等危险品适用同等处分规定
-            </div>
-        </div>
-    </div>
+    <!-- 内容会被自动插入 -->
     
-    <div style="text-align:center;">
-        <button class="back-btn" onclick="window.history.back()">
-            <i class="fas fa-arrow-left"></i>返回列表
-        </button>
-    </div>
-
-    <!-- 页脚区域 -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>联系方式</h3>
-                <p><i class="fas fa-building"></i> 总部：2024级36、37班</p>
-                <p><i class="fab fa-qq"></i> 官Q：3583268240</p>
-                <p><i class="fas fa-envelope"></i> 邮箱：3583268240@qq.com</p>
+    <!-- 加载组件脚本 -->
+    <script src="/js/template.js"></script>
+    
+    <!-- 页面特定内容 -->
+    <main>
+            <div class="announcement-container">
+            <h2 class="announcement-title">山东省实验中学关于禁止携带刀具进入校园的通告</h2>
+            
+            <div class="announcement-date">
+                <i class="fas fa-calendar calendar-icon"></i>
+                <span>2025.05.29</span>
+            </div>
+            
+            <div class="announcement-content">
+                <p>为进一步保护广大师生生命财产安全，维护学校及周边治安秩序，防范侵害师生权益的违法犯罪活动，在校园全面查禁管制刀具，根据《中华人民共和国治安管理处罚法》、公安部《对部分刀具实行管制的暂行规定》，特通告如下：</p>
+                
+                <h3>一、严禁携带以下刀具进入校园：</h3>
+                <ol>
+                    <li><strong>管制刀具</strong>： 包括匕首、三棱刀（包括机械加工用的三棱刮刀）、带有自锁装置的弹簧刀（跳刀）以及其它相类似的单刃、双刃、三棱刀、藏刀、靴刀；无弹簧但有自锁装置的单刃、双刃刀和形似匕首但长度超过匕首的单刃、双刃刀（如仿"东洋武士刀"、西洋军刺等）。</li>
+                    <li><strong>其他各类非学习所需刀具</strong>。</li>
+                </ol>
+                
+                <h3>二、 凡非法持有、携带上述刀具的，要主动上交学校安全保卫部或学生发展部。对主动交出上述刀具的，不予处罚；被查出藏匿或使用上述刀具的，学校按照相关规定从重处理直至开除学籍，同时送缴公安机关并根据相关法律法规处理。</h3>
+                
+                <h3>三、 学校安全保卫部、学生发展部具体负责管制刀具的检查、收缴工作。</h3>
+                
+                <h3>四、学校对携带管制刀具（含各类非学习所需刀具，下同）等危险物品进入校园的处分规定</h3>
+                <ol>
+                    <li>携带管制刀具、易燃易爆物品、化学药品等危险品入校的给予校级严重警告处分。</li>
+                    <li>再次携带管制刀具、易燃易爆物品、化学药品等危险品入校的给予开除学籍处分。</li>
+                </ol>
             </div>
         </div>
-    </footer>
-
+    </main>
+    
+    <!-- 页面特定脚本 -->
     <script>
-        // 菜单切换功能
-        const nav = document.getElementById('navLinks');
-        const btn = document.querySelector('.menu-btn');
-        const toggleMenu = () => {
-            nav.classList.toggle('active');
-            btn.textContent = nav.classList.contains('active') ? '×' : '☰';
-        }
-        
-        // 点击其他地方关闭菜单
-        document.addEventListener('click', e => {
-            if (!e.target.closest('.nav') && nav.classList.contains('active')) toggleMenu();
-        });
+        // 这里可以添加页面特定的JavaScript代码
     </script>
 </body>
 </html>
-
