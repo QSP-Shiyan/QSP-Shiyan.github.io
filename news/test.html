@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>禁止携带刀具进入校园的通告 - 山东省实验中学鹊华校区</title>
     <style>
-        /* 主页面通用样式（不与header冲突） */
+        /* 主页面通用样式（不与header/footer冲突） */
         :root {
-            --c: #a3111b;
-            --l: rgba(255,255,255,0.9);
+            --c: #a3111b; /* 主色调 */
+            --l: rgba(255,255,255,0.9); /* 浅色文字 */
         }
         
         * {
@@ -20,9 +20,9 @@
         
         body {
             line-height: 1.7;
-            color: #333;
+            color: #333; /* 正文黑色 */
             padding-top: 70px; /* 为header留出空间 */
-            padding-bottom: 4rem;
+            padding-bottom: 4rem; /* 为footer留出空间 */
             background: #f8f9fa;
         }
 
@@ -108,7 +108,7 @@
             transform: translateY(-2px);
         }
 
-        /* 主页面移动端适配（不与header冲突） */
+        /* 主页面移动端适配 */
         @media (max-width: 768px) {
             html {
                 font-size: 14px;
@@ -138,7 +138,7 @@
     </style>
 </head>
 <body>
-    <!-- 加载header（隔离样式和脚本） -->
+    <!-- 加载header（根目录路径） -->
     <div id="header-container"></div>
     
     <!-- 正文内容 -->
@@ -169,22 +169,28 @@
         <p>2. 再次携带管制刀具、易燃易爆物品、化学药品等危险品入校的，给予开除学籍处分。</p>
     </div>
 
-    <!-- 底部模板 -->
+    <!-- 加载footer（根目录路径） -->
     <div id="footer-container"></div>
-    
+
     <!-- 加载脚本 -->
     <script>
-        // 加载header（使用iframe隔离样式，避免冲突）
+        // 加载header（根目录路径）
         const headerContainer = document.getElementById('header-container');
         const headerIframe = document.createElement('iframe');
-        headerIframe.src = 'header.html';
+        headerIframe.src = '/header.html'; // 根目录路径
         headerIframe.style.width = '100%';
         headerIframe.style.border = 'none';
-        headerIframe.style.height = '70px'; /* 固定header高度 */
+        headerIframe.style.height = '70px'; /* 与header高度一致 */
         headerContainer.appendChild(headerIframe);
 
-        // 主页面其他脚本（如底部加载）
-        // ...（保持原有底部加载逻辑）
+        // 加载footer（根目录路径）
+        const footerContainer = document.getElementById('footer-container');
+        const footerIframe = document.createElement('iframe');
+        footerIframe.src = '/footer.html'; // 根目录路径
+        footerIframe.style.width = '100%';
+        footerIframe.style.border = 'none';
+        footerIframe.style.height = 'auto'; /* 自适应footer高度 */
+        footerContainer.appendChild(footerIframe);
     </script>
 </body>
 </html>
