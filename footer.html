@@ -12,10 +12,10 @@
                 <a href="http://sdshiyan.jinan-edu.cn" class="footer-link">
                     <i class="fas fa-globe"></i>省实验官网
                 </a>
-                <a href="images/map.html" class="footer-link">
+                <a href="../images/map.html" class="footer-link">
                     <i class="fas fa-map-marker-alt"></i>校区地图
                 </a>
-                <a href="qsc/eng.html" class="footer-link">
+                <a href="../qsc/eng.html" class="footer-link">
                     <i class="fas fa-bookmark"></i>占位
                 </a>
             </div>
@@ -29,7 +29,7 @@
         img.classList.add('loaded');
     }
 
-    // 移动端菜单切换（修复版）
+    // 移动端菜单切换（最终修复版）
     const navLinks = document.getElementById('navLinks');
     let isMenuOpen = false;
 
@@ -45,15 +45,16 @@
             setTimeout(() => {
                 const navHeight = navLinks.scrollHeight;
                 navLinks.style.maxHeight = `${Math.min(navHeight, 400)}px`; // 最大高度400px
-            }, 10);
+            }, 10); // 延迟10ms确保渲染完成
         } else {
-            navLinks.style.maxHeight = '0';
+            navLinks.style.maxHeight = '0'; // 强制重置为0
         }
     }
 
-    // 点击外部区域关闭菜单
+    // 点击外部区域关闭菜单（优化版）
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav') && isMenuOpen) {
+        const isClickInsideNav = e.target.closest('.nav');
+        if (!isClickInsideNav && isMenuOpen) {
             toggleMobileMenu();
         }
     });
