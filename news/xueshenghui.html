@@ -1,1 +1,79 @@
-
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .announcement-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 1rem;
+        }
+        .announcement-title {
+            color: black;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .announcement-date {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            color: #555;
+            font-size: 1rem;
+        }
+        .calendar-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        .announcement-content p {
+            text-indent: 2em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        @media (max-width: 768px) {
+            .announcement-container {
+                padding: 15px;
+            }
+            .announcement-title {
+                font-size: 1.3rem;
+            }
+            .calendar-icon {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 内容会被自动插入 -->
+    
+    <!-- 加载组件脚本 -->
+    <script src="/js/template.js"></script>
+    
+    <!-- 页面特定内容 -->
+    <main>
+            <div class="announcement-container">
+            <h2 class="announcement-title">标题</h2>
+            
+            <div class="announcement-date">
+                <i class="fas fa-calendar calendar-icon"></i>
+                <span>时间</span>
+            </div>
+            
+            <div class="announcement-content">
+            //正文内容
+            </div>
+        </div>
+    </main>
+    
+    <!-- 页面特定脚本 -->
+    <script>
+        // 这里可以添加页面特定的JavaScript代码
+    </script>
+</body>
+</html>
