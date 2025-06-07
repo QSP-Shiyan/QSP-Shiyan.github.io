@@ -69,90 +69,11 @@
             background: rgba(255,255,255,0.2);
         }
         
-        /* 返回首页按钮 */
-        .back-to-home {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--c);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            z-index: 999;
-        }
-        .back-to-home:hover {
-            transform: translateY(-4px);
-            background: #8a0e16;
-        }
-
         /* 内容区域样式 */
         main {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1.5rem;
-        }
-        
-        /* 页脚 */
-        .footer {
-            background: var(--c);
-            color: var(--l);
-            padding: 3rem 1.5rem;
-            margin-top: 3rem;
-            border-top: 3px solid rgba(0,0,0,0.1);
-        }
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-        }
-        .footer-section h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.2rem;
-            position: relative;
-            padding-bottom: 0.6rem;
-        }
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: rgba(255,255,255,0.7);
-        }
-        .footer-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 0.8rem;
-        }
-        .footer-link {
-            color: var(--l);
-            text-decoration: none;
-            padding: 0.3rem 0;
-            font-size: 1rem;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .footer-link:hover {
-            padding-left: 6px;
-            opacity: 0.8;
         }
     </style>
 </head>
