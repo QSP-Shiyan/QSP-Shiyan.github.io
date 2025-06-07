@@ -3,121 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>禁止携带刀具进入校园的通告</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>禁止携带刀具进入校园的通告 - 山东省实验中学鹊华校区</title>
     <style>
-        /* 修复：保留原标题区域的样式 */
         :root {
-            --c: #a3111b;
-            --l: rgba(255,255,255,0.9);
+            --c: #a3111b; /* 主色调（保留但仅用于背景等非文字区域） */
+        }
+        
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
         }
         
         body {
-            padding-top: 70px; /* 关键：避免导航栏遮挡内容 */
-            padding-bottom: 4rem; /* 为固定的页脚留出空间 */
             line-height: 1.7;
-            color: #333;
+            color: #333; /* 全局文字颜色设为黑色 */
+            padding-top: 70px;
+            padding-bottom: 4rem;
             background: #f8f9fa;
         }
 
-        /* 修复：完整保留原标题区域样式 */
         .article-header {
-            background: linear-gradient(rgba(163,17,27,0.9), rgba(130,14,23,0.9)),             background-size: cover;
-            background-position: center;
-            color: white;
+            background: var(--c); /* 红色背景仅用于标题区域 */
+            color: white; /* 标题文字保持白色（与红色背景对比） */
             text-align: center;
             padding: 4rem 1.5rem;
             margin-bottom: 3rem;
+            border-radius: 10px;
+            margin-left: 1rem;
+            margin-right: 1rem;
         }
         
         .article-header h1 {
             font-size: 2.3rem;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
-        .article-header .meta {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
+        .article-date {
             font-size: 1.1rem;
-            margin-top: 1.5rem;
             opacity: 0.9;
-        }
-        
-        .article-header .meta i {
-            margin-right: 8px;
+            margin-top: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
         }
 
-        /* 其他原有内容样式 */
-        .article-container {
+        .article-content {
             max-width: 900px;
             margin: 0 auto 4rem;
+            padding: 3rem 1.5rem;
             background: white;
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            padding: 3rem;
-            position: relative;
         }
-        
-        .seal {
-            position: absolute;
-            right: 3rem;
-            top: -1rem;
-            opacity: 0.3;
-            font-size: 5rem;
-            color: var(--c);
-        }
-        
-        .article-content {
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-        
+
         .article-content h2 {
-            color: var(--c);
+            color: #333; /* 关键修改：标题颜色从红色改为黑色 */
             margin: 2rem 0 1.5rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid #f0f0f0;
         }
         
-        .article-content h3 {
-            font-size: 1.3rem;
-            margin: 1.5rem 0 1rem;
-            color: #444;
+        .article-content p {
+            margin-bottom: 1.5rem;
         }
-        
-        .article-content ul {
-            padding-left: 2rem;
-            margin: 1.2rem 0;
-        }
-        
-        .article-content li {
-            margin-bottom: 0.8rem;
-            position: relative;
-        }
-        
-        .article-content li::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: var(--c);
-            border-radius: 50%;
-            position: absolute;
-            left: -1.5rem;
-            top: 0.65rem;
-        }
-        
-        .important-notice {
-            background: #fff9f9;
-            border-left: 4px solid var(--c);
-            padding: 1.5rem;
-            margin: 1.8rem 0;
-            border-radius: 0 4px 4px 0;
-        }
-        
+
         .signature {
             margin-top: 3rem;
             padding-top: 2rem;
@@ -129,18 +83,13 @@
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
         }
-        
-        .signature .date {
-            font-style: italic;
-            opacity: 0.8;
-        }
-        
+
         .back-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             margin: 2rem auto;
-            background: var(--c);
+            background: var(--c); /* 按钮背景保留红色 */
             color: white;
             border: none;
             padding: 0.8rem 1.8rem;
@@ -155,6 +104,35 @@
             background: #8a0e16;
             transform: translateY(-2px);
         }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+            
+            body {
+                padding-top: 65px;
+            }
+            
+            .article-header {
+                padding: 3rem 1.2rem;
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+            
+            .article-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .article-content {
+                padding: 1.8rem 1rem;
+                margin: 0 0.5rem 3rem;
+            }
+            
+            .article-date {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -162,39 +140,40 @@
     <div id="header-container"></div>
     
     <!-- 正文内容 -->
-    <div class="article-container">
-        <div class="article-header"> <!-- 关键：保留原标题区域结构 -->
-            <h1>山东省实验中学关于禁止携带刀具进入校园的通告</h1>
-            <div class="meta">
-                <i class="far fa-calendar-alt"></i>2025.05.29
-            </div>
-        </div>
-
-        <div class="article-content">
-            <p>为进一步保护广大师生生命财产安全，维护学校及周边治安秩序，防范侵害师生权益的违法犯罪活动，在校园全面查禁管制刀具，根据《中华人民共和国治安管理处罚法》、公安部《对部分刀具实行管制的暂行规定》，特通告如下：</p>
-            
-            <!-- 其他原有内容保持不变 -->
-            <h2>一、严禁携带以下刀具进入校园</h2>
-            
-            <h3>1. 管制刀具</h3>
-            <ul>
-                <li>匕首、三棱刀（包括机械加工用的三棱刮刀）、带有自锁装置的弹簧刀（跳刀）</li>
-                <li>其它相类似的单刃、双刃、三棱刀、藏刀、靴刀</li>
-                <li>无弹簧但有自锁装置的单刃、双刃刀</li>
-                <li>形似匕首但长度超过匕首的单刃、双刃刀（如仿"东洋武士刀"、西洋军刺等）</li>
-            </ul>
-            
-            <!-- 后续内容保持不变 -->
-        </div>
+    <div class="article-header">
+        <h1>山东省实验中学关于禁止携带刀具进入校园的通告</h1>
+        <span class="article-date">
+            <i class="far fa-calendar-alt"></i>
+            2025年05月29日
+        </span>
     </div>
-    
+
+    <div class="article-content">
+        <p>为进一步保护广大师生生命财产安全，维护学校及周边治安秩序，防范侵害师生权益的违法犯罪活动，在校园全面查禁管制刀具，根据《中华人民共和国治安管理处罚法》、公安部《对部分刀具实行管制的暂行规定》，特通告如下：</p>
+        
+        <h2>一、严禁携带以下刀具进入校园</h2>
+        <p>1. 管制刀具：包括匕首、三棱刀（包括机械加工用的三棱刮刀）、带有自锁装置的弹簧刀（跳刀）以及其它相类似的单刃、双刃、三棱刀、藏刀、靴刀；无弹簧但有自锁装置的单刃、双刃刀和形似匕首但长度超过匕首的单刃、双刃刀（如仿"东洋武士刀"、西洋军刺等）。</p>
+        <p>2. 其他各类非学习所需刀具。</p>
+        
+        <h2>二、违禁刀具处理规定</h2>
+        <p>凡非法持有、携带上述刀具的，要主动上交学校安全保卫部或学生发展部。对主动交出上述刀具的，不予处罚；被查出藏匿或使用上述刀具的，学校按照相关规定从重处理直至开除学籍，同时送缴公安机关并根据相关法律法规处理。</p>
+        
+        <h2>三、责任部门</h2>
+        <p>学校安全保卫部、学生发展部具体负责管制刀具的检查、收缴工作。</p>
+        
+        <h2>四、处分规定</h2>
+        <p>学校对携带管制刀具（含各类非学习所需刀具，下同）等危险物品进入校园的处分规定：</p>
+        <p>1. 携带管制刀具、易燃易爆物品、化学药品等危险品入校的，给予校级严重警告处分。</p>
+        <p>2. 再次携带管制刀具、易燃易爆物品、化学药品等危险品入校的，给予开除学籍处分。</p>
+    </div>
+
     <!-- 底部模板 -->
     <div id="footer-container"></div>
     
     <!-- 加载脚本 -->
     <script>
-        // 加载头部模板
-        fetch('/header.html')
+        // 加载头部模板（header.html包含导航栏）
+        fetch('header.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('header-container').innerHTML = html;
@@ -206,8 +185,8 @@
                 }
             });
         
-        // 加载底部模板
-        fetch('/footer.html')
+        // 加载底部模板（footer.html）
+        fetch('footer.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('footer-container').innerHTML = html;
@@ -227,10 +206,9 @@
         document.addEventListener('click', e => {
             const nav = document.getElementById('navLinks');
             const btn = document.querySelector('.menu-btn');
-            if (nav && nav.classList.contains('active') && 
-                !e.target.closest('.nav') && 
-                !e.target.closest('.menu-btn')) {
-                toggleMenu();
+            if (nav && btn) {
+                nav.classList.toggle('active');
+                btn.textContent = nav.classList.contains('active') ? '×' : '☰';
             }
         });
     </script>
