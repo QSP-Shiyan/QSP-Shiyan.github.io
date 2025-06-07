@@ -173,7 +173,7 @@
     <!-- 加载脚本 -->
     <script>
         // 加载头部模板（header.html包含导航栏）
-        fetch('header.html')
+        fetch('/header.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('header-container').innerHTML = html;
@@ -186,7 +186,7 @@
             });
         
         // 加载底部模板（footer.html）
-        fetch('footer.html')
+        fetch('/footer.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('footer-container').innerHTML = html;
