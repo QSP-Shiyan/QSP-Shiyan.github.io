@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>示例页面 - 鹊华学生合作组织</title>
+    <title>测试 - 鹊华学生合作组织</title>
     <!-- 引入模板JS文件 -->
     <script src="/js/template.js"></script>
-    <!-- 加载所有模板元素 -->
-    <script>
-        // 等待DOM加载完成后执行
-        document.addEventListener('DOMContentLoaded', function() {
-            // 加载所有模板元素
-            loadAllTemplates();
-            
-            // 加载CSS (如果template.js中没有自动加载)
-            // loadCSS('/css/style.css');
-        });
-    </script>
+    <!-- 页面样式可以在这里添加 -->
+    <style>
+        /* 页面特定样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+    </style>
 </head>
 <body>
-    <!-- 页面内容将由JavaScript动态插入 -->
-    
     <!-- 主要内容区域 - 在此处添加您的页面特定内容 -->
     <div class="page-content">
         <div class="container">
@@ -73,5 +69,13 @@
             </div>
         </div>
     </div>
+
+    <!-- 加载模板 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载所有模板元素
+            loadAllTemplates();
+        });
+    </script>
 </body>
 </html>
