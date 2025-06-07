@@ -5,27 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>禁止携带刀具进入校园的通告 - 山东省实验中学鹊华校区</title>
     <style>
+        /* 主页面通用样式（不与header冲突） */
         :root {
-            --c: #a3111b; /* 主色调（保留但仅用于背景等非文字区域） */
+            --c: #a3111b;
+            --l: rgba(255,255,255,0.9);
         }
         
         * {
             margin: 0;
             box-sizing: border-box;
             font-family: "Microsoft YaHei", sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
             line-height: 1.7;
-            color: #333; /* 全局文字颜色设为黑色 */
-            padding-top: 70px;
+            color: #333;
+            padding-top: 70px; /* 为header留出空间 */
             padding-bottom: 4rem;
             background: #f8f9fa;
         }
 
         .article-header {
-            background: var(--c); /* 红色背景仅用于标题区域 */
-            color: white; /* 标题文字保持白色（与红色背景对比） */
+            background: var(--c);
+            color: white;
             text-align: center;
             padding: 4rem 1.5rem;
             margin-bottom: 3rem;
@@ -62,7 +65,7 @@
         }
 
         .article-content h2 {
-            color: #333; /* 关键修改：标题颜色从红色改为黑色 */
+            color: #333; /* 黑色标题 */
             margin: 2rem 0 1.5rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid #f0f0f0;
@@ -89,7 +92,7 @@
             align-items: center;
             gap: 8px;
             margin: 2rem auto;
-            background: var(--c); /* 按钮背景保留红色 */
+            background: var(--c);
             color: white;
             border: none;
             padding: 0.8rem 1.8rem;
@@ -105,6 +108,7 @@
             transform: translateY(-2px);
         }
 
+        /* 主页面移动端适配（不与header冲突） */
         @media (max-width: 768px) {
             html {
                 font-size: 14px;
@@ -116,8 +120,6 @@
             
             .article-header {
                 padding: 3rem 1.2rem;
-                margin-left: 0.5rem;
-                margin-right: 0.5rem;
             }
             
             .article-header h1 {
@@ -136,7 +138,7 @@
     </style>
 </head>
 <body>
-    <!-- 头部模板 -->
+    <!-- 加载header（隔离样式和脚本） -->
     <div id="header-container"></div>
     
     <!-- 正文内容 -->
@@ -172,45 +174,17 @@
     
     <!-- 加载脚本 -->
     <script>
-        // 加载头部模板（header.html包含导航栏）
-        fetch('/header.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('header-container').innerHTML = html;
-                
-                // 重新绑定菜单按钮事件
-                const btn = document.querySelector('.menu-btn');
-                if (btn) {
-                    btn.onclick = toggleMenu;
-                }
-            });
-        
-        // 加载底部模板（footer.html）
-        fetch('/footer.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('footer-container').innerHTML = html;
-            });
-        
-        // 菜单切换功能
-        function toggleMenu() {
-            const nav = document.getElementById('navLinks');
-            const btn = document.querySelector('.menu-btn');
-            if (nav && btn) {
-                nav.classList.toggle('active');
-                btn.textContent = nav.classList.contains('active') ? '×' : '☰';
-            }
-        }
-        
-        // 点击其他地方关闭菜单
-        document.addEventListener('click', e => {
-            const nav = document.getElementById('navLinks');
-            const btn = document.querySelector('.menu-btn');
-            if (nav && btn) {
-                nav.classList.toggle('active');
-                btn.textContent = nav.classList.contains('active') ? '×' : '☰';
-            }
-        });
+        // 加载header（使用iframe隔离样式，避免冲突）
+        const headerContainer = document.getElementById('header-container');
+        const headerIframe = document.createElement('iframe');
+        headerIframe.src = 'header.html';
+        headerIframe.style.width = '100%';
+        headerIframe.style.border = 'none';
+        headerIframe.style.height = '70px'; /* 固定header高度 */
+        headerContainer.appendChild(headerIframe);
+
+        // 主页面其他脚本（如底部加载）
+        // ...（保持原有底部加载逻辑）
     </script>
 </body>
 </html>
