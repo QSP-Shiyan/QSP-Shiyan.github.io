@@ -1,11 +1,186 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<nav class="nav">
-    <a href="../index.html"><img src="../images/logo.png" alt="校徽" class="logo"></a>
-    <div class="nav-links" id="navLinks">
-        <a href="../index.html" class="nav-link"><i class="fas fa-home"></i>首页</a>
-        <a href="../news/index.html" class="nav-link"><i class="fas fa-newspaper"></i>校园新闻</a>
-        <a href="../qsc/index.html" class="nav-link"><i class="fas fa-users"></i>鹊合组织</a>
-        <a href="../notice/index.html" class="nav-link"><i class="fas fa-bullhorn"></i>鹊合公告</a>
-    </div>
-    <button class="menu-btn" onclick="toggleMobileMenu()">☰</button>
-</nav>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山东省实验中学鹊华校区</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 仅保留与导航栏/菜单相关的CSS（避免与全局样式冲突） */
+        :root {
+            --c: #a3111b; /* 主色调（红色） */
+            --l: rgba(255, 255, 255, 0.9); /* 浅色文字（用于导航栏） */
+            --t: 0.3s; /* 动画过渡时间 */
+        }
+
+        .nav {
+            background: var(--c);
+            padding: 1rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* 确保导航栏在最顶层 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: 70px; /* 桌面端高度 */
+        }
+
+        .logo {
+            height: 42px;
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            margin: 0 auto;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: absolute; /* 相对于.nav定位 */
+            top: 100%; /* 严格位于导航栏正下方 */
+            left: 0;
+            right: 0;
+            background: var(--c);
+            padding: 0; /* 重置内边距 */
+            max-height: 0; /* 初始完全隐藏 */
+            overflow: hidden; /* 禁止内容溢出 */
+            transition: max-height var(--t) ease-in-out;
+            z-index: 999; /* 确保在导航栏下方 */
+        }
+
+        .nav-link {
+            color: var(--l);
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            font-weight: 500;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all var(--t) ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-btn {
+            display: none;
+            background: transparent;
+            color: var(--l);
+            font-size: 1.8rem;
+            cursor: pointer;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1001; /* 确保按钮在导航链接上方 */
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border: none;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+
+            body {
+                padding-top: 65px; /* 调整为移动端导航栏高度 */
+            }
+
+            .nav {
+                height: 65px; /* 移动端导航栏高度 */
+                padding: 0.8rem;
+            }
+
+            .logo {
+                height: 36px;
+                left: 1rem;
+            }
+
+            .menu-btn {
+                display: flex; /* 移动端显示菜单按钮 */
+            }
+
+            .nav-links {
+                top: 100%; /* 严格位于移动端导航栏正下方 */
+                left: 0;
+                right: 0;
+                width: 100%; /* 占满屏幕宽度 */
+                border-radius: 0 0 8px 8px; /* 底部圆角 */
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.active {
+                max-height: 400px; /* 动态计算高度（最大400px） */
+                padding: 1rem 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-link {
+                justify-content: center; /* 链接居中 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 整合后的导航栏+菜单结构 -->
+    <nav class="nav">
+        <a href="/index.html"><img src="../images/logo.png" alt="校徽" class="logo"></a>
+        <div class="nav-links" id="navLinks">
+            <a href="/index.html" class="nav-link"><i class="fas fa-home"></i>首页</a>
+            <a href="/news/index.html" class="nav-link"><i class="fas fa-newspaper"></i>校园新闻</a>
+            <a href="/qsc/index.html" class="nav-link"><i class="fas fa-users"></i>鹊合组织</a>
+            <a href="/notice/index.html" class="nav-link"><i class="fas fa-bullhorn"></i>鹊合公告</a>
+        </div>
+        <button class="menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+
+    <!-- 以下为原header中的其他内容（如无则删除） -->
+    
+    <script>
+        // 移动端菜单切换（最终修复版）
+        const navLinks = document.getElementById('navLinks');
+        let isMenuOpen = false;
+
+        function toggleMobileMenu() {
+            isMenuOpen = !isMenuOpen;
+            navLinks.classList.toggle('active', isMenuOpen);
+            
+            // 控制页面滚动
+            document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+            
+            // 动态计算菜单高度（关键修复）
+            if (isMenuOpen) {
+                setTimeout(() => {
+                    const navHeight = navLinks.scrollHeight;
+                    navLinks.style.maxHeight = `${Math.min(navHeight, 400)}px`; // 最大高度400px
+                }, 10); // 延迟10ms确保渲染完成
+            } else {
+                navLinks.style.maxHeight = '0'; // 强制重置为0
+            }
+        }
+
+        // 点击外部区域关闭菜单（优化版）
+        document.addEventListener('click', (e) => {
+            const isClickInsideNav = e.target.closest('.nav');
+            if (!isClickInsideNav && isMenuOpen) {
+                toggleMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html>
