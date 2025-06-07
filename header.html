@@ -6,15 +6,25 @@
     <title>山东省实验中学鹊华校区</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* 仅保留与导航栏/菜单相关的CSS（避免与全局样式冲突） */
-        :root {
-            --c: #a3111b; /* 主色调（红色） */
-            --l: rgba(255, 255, 255, 0.9); /* 浅色文字（用于导航栏） */
-            --t: 0.3s; /* 动画过渡时间 */
+        /* 全局基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, "Microsoft YaHei", sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding-top: 70px; /* 为固定导航栏预留空间 */
+        }
+
+        /* 导航栏核心样式 */
         .nav {
-            background: var(--c);
+            background: #a3111b; /* 主色直接使用色值 */
             padding: 1rem;
             position: fixed;
             top: 0;
@@ -31,6 +41,12 @@
             top: 50%;
             transform: translateY(-50%);
             border-radius: 4px;
+            filter: blur(10px); /* 初始模糊效果 */
+            transition: filter 0.8s ease-in-out;
+        }
+
+        .logo.loaded {
+            filter: blur(0); /* 加载完成后清晰显示 */
         }
 
         .nav-links {
@@ -44,16 +60,16 @@
             top: 100%; /* 严格位于导航栏正下方 */
             left: 0;
             right: 0;
-            background: var(--c);
+            background: #a3111b; /* 与导航栏同色 */
             padding: 0; /* 重置内边距 */
             max-height: 0; /* 初始完全隐藏 */
             overflow: hidden; /* 禁止内容溢出 */
-            transition: max-height var(--t) ease-in-out;
+            transition: max-height 0.3s ease-in-out;
             z-index: 999; /* 确保在导航栏下方 */
         }
 
         .nav-link {
-            color: var(--l);
+            color: rgba(255, 255, 255, 0.9); /* 浅色文字 */
             text-decoration: none;
             padding: 0.6rem 1rem;
             font-weight: 500;
@@ -62,7 +78,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all var(--t) ease;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover {
@@ -72,7 +88,7 @@
         .menu-btn {
             display: none;
             background: transparent;
-            color: var(--l);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.8rem;
             cursor: pointer;
             position: absolute;
@@ -87,7 +103,7 @@
             border: none;
         }
 
-        /* 移动端适配 */
+        /* 响应式菜单（移动端） */
         @media (max-width: 768px) {
             html {
                 font-size: 14px;
@@ -137,7 +153,7 @@
     </style>
 </head>
 <body>
-    <!-- 整合后的导航栏+菜单结构 -->
+    <!-- 导航栏+菜单结构 -->
     <nav class="nav">
         <a href="/index.html"><img src="../images/logo.png" alt="校徽" class="logo"></a>
         <div class="nav-links" id="navLinks">
@@ -149,9 +165,13 @@
         <button class="menu-btn" onclick="toggleMobileMenu()">☰</button>
     </nav>
 
-    <!-- 以下为原header中的其他内容（如无则删除） -->
-    
+    <!-- 核心脚本（整合所有功能） -->
     <script>
+        // 图片加载处理（优化版）
+        function handleImageLoad(img) {
+            img.classList.add('loaded');
+        }
+
         // 移动端菜单切换（最终修复版）
         const navLinks = document.getElementById('navLinks');
         let isMenuOpen = false;
@@ -179,6 +199,20 @@
             const isClickInsideNav = e.target.closest('.nav');
             if (!isClickInsideNav && isMenuOpen) {
                 toggleMobileMenu();
+            }
+        });
+
+        // 图片加载监听（确保Logo清晰显示）
+        document.addEventListener('DOMContentLoaded', () => {
+            const logo = document.querySelector('.logo');
+            if (logo.complete) {
+                logo.classList.add('loaded');
+            } else {
+                logo.addEventListener('load', () => logo.classList.add('loaded'));
+                logo.addEventListener('error', () => {
+                    console.log('Logo加载失败');
+                    logo.classList.add('loaded'); // 失败也移除模糊
+                });
             }
         });
     </script>
