@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹊合公告 - 鹊华学生合作组织官方网站-测试版</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .announcement-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 1rem;
+        }
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 0 1.5rem;
+        }
+        .page-header h1 {
+            font-size: 2.2rem;
+            color: var(--c);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .page-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--c);
+        }
+        .more-btn {
+            background: var(--c);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .more-btn:hover {
+            background: #8a0e16;
+            transform: translateY(-2px);
+        }
+        .announcement-grid {
+            display: grid;
+            gap: 1.8rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            padding: 0 1rem;
+        }
+        .announce-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all .3s;
+            text-decoration: none;
+            color: inherit;
+            padding: 2rem;
+            border-left: 5px solid var(--c);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-left: 30px;
+        }
+        .announce-card::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--c);
+        }
+        .announce-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .announce-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #222;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .announce-card h3 i {
+            color: var(--c);
+        }
+        .announce-date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .announce-date i {
+            margin-right: 5px;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+            .page-header {
+                margin-bottom: 1.5rem;
+                padding: 0 1rem;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .announcement-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .announce-card {
+                padding: 1.5rem;
+                padding-left: 30px;
+            }
+            
+            .announce-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="page-header">
+            <h1>鹊合公告</h1>
+            <a href="notice/index.html" class="more-btn">
+                <i class="fas fa-arrow-right"></i>查看更多
+            </a>
+        </div>
+        
+        <div class="announcement-grid">
+            <a href="notice/detail1.html" class="announce-card">
+                <h3><i class="fas fa-bullhorn"></i>关于2025学年学生会招新工作的通知</h3>
+                <div class="announce-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>2025.06.10</span>
+                </div>
+            </a>
+            
+            <a href="notice/detail2.html" class="announce-card">
+                <h3><i class="fas fa-calendar-alt"></i>2025年校园文化节活动安排</h3>
+                <div class="announce-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>2025.05.28</span>
+                </div>
+            </a>
+            
+            <a href="notice/detail3.html" class="announce-card">
+                <h3><i class="fas fa-exclamation-circle"></i>关于加强期末考风考纪教育的通知</h3>
+                <div class="announce-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>2025.06.05</span>
+                </div>
+            </a>
+            
+            <a href="notice/detail4.html" class="announce-card">
+                <h3><i class="fas fa-award"></i>2025年度奖学金评选工作的通知</h3>
+                <div class="announce-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>2025.05.20</span>
+                </div>
+            </a>
+            
+            <a href="notice/detail5.html" class="announce-card">
+                <h3><i class="fas fa-book"></i>关于推荐暑期阅读书目的通知</h3>
+                <div class="announce-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>2025.06.12</span>
+                </div>
+            </a>
+            
+            <a href="notice/detail6.html" class="announce-card">
+                <h3><i class="fas fa-bus"></i>关于2025年暑期校园班车安排的通知</h3>
+                <div class="announce-date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>2025.06.18</span>
+                </div>
+            </a>
+        </div>
+    </main>
+</body>
+</html>
