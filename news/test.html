@@ -1,196 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>禁止携带刀具进入校园的通告 - 山东省实验中学鹊华校区</title>
+    <!-- 引入头部 -->
+    {% include 'header.html' %}
     <style>
-        /* 主页面通用样式（不与header/footer冲突） */
-        :root {
-            --c: #a3111b; /* 主色调 */
-            --l: rgba(255,255,255,0.9); /* 浅色文字 */
-        }
-        
-        * {
-            margin: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        body {
-            line-height: 1.7;
-            color: #333; /* 正文黑色 */
-            padding-top: 70px; /* 为header留出空间 */
-            padding-bottom: 4rem; /* 为footer留出空间 */
-            background: #f8f9fa;
-        }
-
-        .article-header {
-            background: var(--c);
-            color: white;
-            text-align: center;
-            padding: 4rem 1.5rem;
-            margin-bottom: 3rem;
-            border-radius: 10px;
-            margin-left: 1rem;
-            margin-right: 1rem;
-        }
-        
-        .article-header h1 {
-            font-size: 2.3rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .article-date {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-top: 1.2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255,255,255,0.1);
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-        }
-
-        .article-content {
-            max-width: 900px;
-            margin: 0 auto 4rem;
-            padding: 3rem 1.5rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .article-content h2 {
-            color: #333; /* 黑色标题 */
-            margin: 2rem 0 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .article-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .signature {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            text-align: right;
-            border-top: 1px dashed #ddd;
-        }
-        
-        .signature p {
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin: 2rem auto;
-            background: var(--c);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .back-btn:hover {
-            background: #8a0e16;
-            transform: translateY(-2px);
-        }
-
-        /* 主页面移动端适配 */
-        @media (max-width: 768px) {
-            html {
-                font-size: 14px;
-            }
-            
-            body {
-                padding-top: 65px;
-            }
-            
-            .article-header {
-                padding: 3rem 1.2rem;
-            }
-            
-            .article-header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .article-content {
-                padding: 1.8rem 1rem;
-                margin: 0 0.5rem 3rem;
-            }
-            
-            .article-date {
-                font-size: 1rem;
-            }
+        /* 页面特定样式 */
+        .news-list {
+            display: grid;
+            gap: 1.5rem;
         }
     </style>
 </head>
 <body>
-    <!-- 加载header（根目录路径） -->
-    <div id="header-container"></div>
+    <!-- 页面内容 -->
+    <main>
+        <h1>页面标题</h1>
+        <div class="news-list">
+            <!-- 内容 -->
+        </div>
+    </main>
     
-    <!-- 正文内容 -->
-    <div class="article-header">
-        <h1>山东省实验中学关于禁止携带刀具进入校园的通告</h1>
-        <span class="article-date">
-            <i class="far fa-calendar-alt"></i>
-            2025年05月29日
-        </span>
-    </div>
-
-    <div class="article-content">
-        <p>为进一步保护广大师生生命财产安全，维护学校及周边治安秩序，防范侵害师生权益的违法犯罪活动，在校园全面查禁管制刀具，根据《中华人民共和国治安管理处罚法》、公安部《对部分刀具实行管制的暂行规定》，特通告如下：</p>
-        
-        <h2>一、严禁携带以下刀具进入校园</h2>
-        <p>1. 管制刀具：包括匕首、三棱刀（包括机械加工用的三棱刮刀）、带有自锁装置的弹簧刀（跳刀）以及其它相类似的单刃、双刃、三棱刀、藏刀、靴刀；无弹簧但有自锁装置的单刃、双刃刀和形似匕首但长度超过匕首的单刃、双刃刀（如仿"东洋武士刀"、西洋军刺等）。</p>
-        <p>2. 其他各类非学习所需刀具。</p>
-        
-        <h2>二、违禁刀具处理规定</h2>
-        <p>凡非法持有、携带上述刀具的，要主动上交学校安全保卫部或学生发展部。对主动交出上述刀具的，不予处罚；被查出藏匿或使用上述刀具的，学校按照相关规定从重处理直至开除学籍，同时送缴公安机关并根据相关法律法规处理。</p>
-        
-        <h2>三、责任部门</h2>
-        <p>学校安全保卫部、学生发展部具体负责管制刀具的检查、收缴工作。</p>
-        
-        <h2>四、处分规定</h2>
-        <p>学校对携带管制刀具（含各类非学习所需刀具，下同）等危险物品进入校园的处分规定：</p>
-        <p>1. 携带管制刀具、易燃易爆物品、化学药品等危险品入校的，给予校级严重警告处分。</p>
-        <p>2. 再次携带管制刀具、易燃易爆物品、化学药品等危险品入校的，给予开除学籍处分。</p>
-    </div>
-
-    <!-- 加载footer（根目录路径） -->
-    <div id="footer-container"></div>
-
-    <!-- 加载脚本 -->
-    <script>
-        // 加载header（根目录路径）
-        const headerContainer = document.getElementById('header-container');
-        const headerIframe = document.createElement('iframe');
-        headerIframe.src = '/header.html'; // 根目录路径
-        headerIframe.style.width = '100%';
-        headerIframe.style.border = 'none';
-        headerIframe.style.height = '70px'; /* 与header高度一致 */
-        headerContainer.appendChild(headerIframe);
-
-        // 加载footer（根目录路径）
-        const footerContainer = document.getElementById('footer-container');
-        const footerIframe = document.createElement('iframe');
-        footerIframe.src = '/footer.html'; // 根目录路径
-        footerIframe.style.width = '100%';
-        footerIframe.style.border = 'none';
-        footerIframe.style.height = 'auto'; /* 自适应footer高度 */
-        footerContainer.appendChild(footerIframe);
-    </script>
+    <!-- 引入底部 -->
+    {% include 'footer.html' %}
 </body>
 </html>
