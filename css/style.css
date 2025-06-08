@@ -184,3 +184,38 @@ main {
     background: #8a0e16;
     transform: translateY(-2px);
 }
+
+/* 返回首页按钮 */
+.home-btn {
+    position: fixed; /* 固定定位 */
+    bottom: 2rem; /* 距离底部距离 */
+    right: 2rem; /* 距离右侧距离 */
+    width: 50px; /* 按钮宽度 */
+    height: 50px; /* 按钮高度 */
+    border-radius: 50%; /* 圆形 */
+    background: var(--c); /* 使用主色（红色） */
+    color: white; /* 图标颜色 */
+    display: flex; /* 弹性布局居中图标 */
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* 去除下划线 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* 阴影 */
+    transition: all 0.3s ease; /* 过渡动画 */
+    z-index: 1001; /* 确保在header（z-index:1000）之上 */
+}
+
+/* 悬停效果：上移+放大 */
+.home-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* 悬停阴影加深 */
+}
+
+/* 移动端适配：缩小按钮 */
+@media (max-width: 768px) {
+    .home-btn {
+        width: 40px;
+        height: 40px;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
