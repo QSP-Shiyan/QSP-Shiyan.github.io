@@ -22,9 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     homeBtn.href = '/'; // 跳转到首页路径
     homeBtn.innerHTML = '<i class="fas fa-home"></i>'; // 使用Font Awesome图标
     document.body.appendChild(homeBtn); // 插入到页面末尾
-});
-
-});
+    });
 
 // 导航栏初始化函数
 function initNavigation() {
