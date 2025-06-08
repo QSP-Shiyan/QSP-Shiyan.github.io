@@ -201,7 +201,7 @@ main {
     text-decoration: none; /* 去除下划线 */
     box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* 阴影 */
     transition: all 0.3s ease; /* 过渡动画 */
-    z-index: 1001; /* 确保在header（z-index:1000）之上 */
+    z-index: 999; /* 确保在header（z-index:1000）之上 */
 }
 
 /* 悬停效果：上移+放大 */
