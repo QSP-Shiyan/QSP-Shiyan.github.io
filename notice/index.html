@@ -127,16 +127,11 @@
             transform: translateY(-2px);
         }
 
-        /* 鹊合公告 */
-        .announcement {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+        /* 缩小后的公告卡片样式 */
         .announcement-grid {
             display: grid;
-            gap: 1.8rem;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem; /* 减小卡片间距 */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 缩小最小列宽 */
             padding: 0 1rem;
         }
         .announce-card {
@@ -144,23 +139,23 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all .3s;
+            transition: all .3s ease;
             text-decoration: none;
             color: inherit;
-            padding: 2rem;
-            border-left: 5px solid var(--c);
+            padding: 1.5rem; /* 减小内边距 */
+            border-left: 4px solid var(--c); /* 减细左侧边框 */
             display: flex;
             flex-direction: column;
             position: relative;
-            padding-left: 30px;
+            padding-left: 25px; /* 调整内边距平衡 */
         }
         .announce-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateY(-6px); /* 减小悬停位移 */
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1); /* 减小阴影范围 */
         }
         .announce-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.3rem; /* 减小标题字体 */
+            margin-bottom: 0.8rem; /* 减小标题下边距 */
             color: #222;
             display: flex;
             align-items: center;
@@ -171,13 +166,13 @@
         }
         .announce-date {
             color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.85rem; /* 减小日期字体 */
+            margin-bottom: 0.3rem; /* 减小日期下边距 */
             display: flex;
             align-items: center;
         }
         .announce-date i {
-            margin-right: 5px;
+            margin-right: 4px; /* 减小图标间距 */
         }
         
         /* 使命宣言 */
@@ -333,29 +328,15 @@
                 padding: 1rem 0;
             }
             
-            .carousel-item img {
-                height: 35vh;
+            .announcement-grid {
+                grid-template-columns: 1fr; /* 移动端保持单列 */
             }
-            
-            .section-header {
-                margin-bottom: 1rem;
-                padding: 0 1rem;
+            .announce-card {
+                padding: 1.2rem; /* 移动端进一步减小内边距 */
             }
-            .section-header h1 {
-                font-size: 1.8rem;
+            .announce-card h3 {
+                font-size: 1.1rem; /* 移动端标题更小 */
             }
-            
-            .news-card {
-                flex: 0 0 85%;
-            }
-            .news-img {
-                height: 160px;
-            }
-            
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            
             .mission {
                 padding: 3rem 1.5rem;
                 margin: 3rem 1rem;
