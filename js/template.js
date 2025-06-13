@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('body').insertAdjacentHTML('beforeend', html);
         });
     
-    // 添加返回首页按钮
+    // 添加返回按钮
     const homeBtn = document.createElement('a');
     homeBtn.className = 'home-btn'; // 对应CSS类名
-    homeBtn.href = '/'; // 跳转到首页路径
+    homeBtn.href = './index.html'; // 跳转到列表路径
     homeBtn.innerHTML = '<i class="fas fa-home"></i>'; // 使用Font Awesome图标
     document.body.appendChild(homeBtn); // 插入到页面末尾
     });
